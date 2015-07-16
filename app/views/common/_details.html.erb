@@ -27,8 +27,12 @@
   <td><strong>Reason:</strong> <%= @user.reason %></td>
 </tr>
 <tr>
-  <td><strong>Role:</strong> <%= @user.role.name %></td>
+  <td><strong>Role:</strong> <%= @user.role_id %></td>
 <% end %>
+  <td><strong>Previous Experience:</strong> <%= @user.previous_experience %></td>
+  <td><strong>Total Experience:</strong> <%= @user.total_experience %></td>
+</tr>
+<tr>  
   <td><strong>Work Phone:</strong> <%= @user.work_phone %></td>
 </tr>
 </table>

@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   def index
   	@users = User.all
     @designations=Designation.all.map{|d| [d.designation_name, d.id]}
@@ -52,6 +52,6 @@ class Admin::UsersController < ApplicationController
   
   private
  	def user_params
-    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id, :password, :password_confirmation, :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :role_id, :is_active, :deactivated_on, :reason, :work_phone)
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id, :password, :password_confirmation, :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :role_id, :is_active, :deactivated_on, :reason, :previous_experience, :work_phone)
  	end
 end

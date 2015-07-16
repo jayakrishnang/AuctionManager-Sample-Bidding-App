@@ -13,9 +13,11 @@ class User < ActiveRecord::Base
     validates :password_confirmation, presence: true, :on => :create
     validates :deactivated_on, absence: true, if: :is_active
  	validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
- 	
- 	before_save :set_default_role
+ 	before_create :set_default_role, :calculate_experience
 
+ 	def calculate_experience
+ 		self.total_experience ||= self.previous_experience + ((Date.today-self.date_of_joining)/365) 
+ 	end
  	def set_default_role
  		self.role_id ||= Role.find_by_name("user").id
  	end

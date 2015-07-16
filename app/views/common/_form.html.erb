@@ -36,7 +36,6 @@
     </tr>
   
     <tr>
-
       <td/> <td/>
       <td/> <td/>
       <td> <%=f.label :password_confirmation , "Confirm Password:" %></td>
@@ -100,7 +99,10 @@
       <td> <%= f.select(:reason, options_for_select([[ ], ['No longer an employee with us'], ['Long Medical leave'], ['Absonding']])) %></td>
     </tr>
   <% end %>
-  <tr ><td /><td/>
+  <tr >
+    <td> <%= f.label :previous_experience %></td>
+    <td> <%= f.text_field :previous_experience  %></td>
+    
     <td> <%= f.label :work_phone%></td>
     <td> <%= f.text_field :work_phone %></td>
 
