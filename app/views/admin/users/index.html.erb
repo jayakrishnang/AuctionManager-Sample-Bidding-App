@@ -1,0 +1,34 @@
+<h1 align="center">ADMIN PAGE</h1>
+
+<br/><%= link_to 'New User', new_admin_user_path %>
+<table class="flat-table flat-table-1" align="center" >
+
+  <tr>
+    <th>First Name</th>
+    <th>Middle Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Login ID</th>
+    <th>Employee ID</th>
+    <th>Designation</th>
+    <th/>
+    <th>Options</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.first_name %></td>
+      <td><%= user.middle_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.login_id %></td>
+      <td><%= user.employee_id %></td>
+      <td><%= user.designation.designation_name %></td>
+      <td><%= link_to "Edit", edit_admin_user_path(user)%></td>
+      <td>&nbsp&nbsp<%= link_to "Show Full Details", admin_user_path(user)%></td>
+      <td>&nbsp&nbsp<%= link_to 'Delete', admin_user_path(user), confirm: 'Are you sure?',
+              :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

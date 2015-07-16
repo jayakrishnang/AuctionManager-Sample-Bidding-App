@@ -1,0 +1,6 @@
+development:
+ adapter: mysql2
+ encoding: utf8
+ database: user_ebo
+ username: root
+ password: root
