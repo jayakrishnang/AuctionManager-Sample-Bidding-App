@@ -15,17 +15,17 @@
 <table class="form-style-10"  >
   <tr >
     <td> <%= f.label :first_name %> </td>
-    <td> <%= f.text_field :first_name ,:required => true %></td>
+    <td> <%= f.text_field :first_name ,:required => true ,:placeholder => "eg: John" %></td>
 
     <td> <%= f.label :middle_name %></td>
     <td> <%= f.text_field :middle_name %></td>
  
     <td> <%= f.label :last_name %> </td>
-    <td> <%= f.text_field :last_name ,:required => true  %></td>
+    <td> <%= f.text_field :last_name ,:required => true ,:placeholder => "eg: Smith" %></td>
   </tr>
   <tr >
     <td> <%= f.label :email %></td>
-    <td> <%= f.text_field :email ,:required => true  %></td>
+    <td> <%= f.text_field :email ,:required => true  ,:placeholder => "eg: johnsmith@mail.com"%></td>
 
     <td> <%= f.label :login_id %></td>
     <td> <%= f.text_field :login_id ,:required => true  %></td>
@@ -104,7 +104,7 @@
     <td> <%= f.text_field :previous_experience  %></td>
     
     <td> <%= f.label :work_phone%></td>
-    <td> <%= f.text_field :work_phone %></td>
+    <td> <%= f.text_field :work_phone ,:placeholder => "180-XXX-XXX-XXXX"%></td>
 
   </tr>
   <tr>
