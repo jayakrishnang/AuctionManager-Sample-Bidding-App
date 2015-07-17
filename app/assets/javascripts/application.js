@@ -2,11 +2,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js">
-</script>
-<script type="text/javascript" >
 $(document).ready(function(){
-	$("#ToggleMe1a").click(function() {
-		$("#ToggleMe1b").toggle();
-	})
-})
+
+$(".check-value").hide();
+   
+$("input:radio[name='user[is_active]']").change(function(){ 
+  // alert('entered') 
+         
+    if(this.value == "false" && this.checked){
+    //	alert('oookss');
+        $(".check-value").show();
+    }else{
+        $(".check-value").hide();
+    }
+
+    });
+
+});

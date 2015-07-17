@@ -1,3 +1,4 @@
+
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -30,7 +31,7 @@
     <td> <%= f.label :login_id %></td>
     <td> <%= f.text_field :login_id ,:required => true  %></td>
     
-  <% if current_page?(action: 'new') %>
+  <% if params[:action] != 'edit' %>
       <td> <%=  f.label :password %></td>
       <td> <%= f.password_field  :password ,:required => true  %></td>
     </tr>
@@ -45,7 +46,7 @@
   <% end %>  
   <tr>
     <td> <%= f.label :date_of_birth, 'Date of Birth' %></td>
-    <td><%= f.date_field :date_of_birth, class: 'datepicker' %></td>
+    <td><%= f.date_field :date_of_birth %></td>
     
     <td> <%= f.label :gender,'Gender' %></td>
     <td > <%= f.radio_button(:gender,:male) %>
@@ -60,7 +61,7 @@
 
   <tr>
     <td> <%= f.label :date_of_joining, 'Date of Joining' %></td>  
-    <td> <%= f.date_field :date_of_joining, class: 'datepicker'%></td>
+    <td> <%= f.date_field :date_of_joining ,:required => true, class: 'datepicker'%></td>
 
     <td> <%= f.label :employee_id, "Employee ID"%></td>
     <td> <%= f.text_field :employee_id %></td>
@@ -86,27 +87,27 @@
     </tr>
 
     <tr>
+
       <td> <%= f.label :is_active,'Status' %></td>
-      <td> <%= f.radio_button(:is_active,1) %>
+      <td> <%= f.radio_button(:is_active,true) %>
            <%= f.label :is_active,"Is Active" %>
-           <%= f.radio_button(:is_active,0) %>
+           <%= f.radio_button(:is_active,false) %>
            <%= f.label :is_active,"Is Locked" %></td>
-
-      <td> <%= f.label :deactivated_on, 'Deactivated On' %></td>
-      <td> <%= f.date_field :deactivated_on, class: 'datepicker' %></td>
-
-      <td> <%= f.label :reason,'Reason' %></td>
-      <td> <%= f.select(:reason, options_for_select([[ ], ['No longer an employee with us'], ['Long Medical leave'], ['Absonding']])) %></td>
     </tr>
+    <tr class="check-value">
+     
+      <td><%= f.label :deactivated_on%></td>
+      <td><%= f.date_field :deactivated_on, class: 'datepicker'  %> </td>
+      <td><%= f.label :reason,'Reason' %></td>
+      <td><%= f.select(:reason, options_for_select([[''],['No longer an employee with us'], ['Long Medical leave'], ['Absconding',]])) %></td></tr>
   <% end %>
-  <tr >
-    <td> <%= f.label :previous_experience %></td>
-    <td> <%= f.text_field :previous_experience  %></td>
-    
-    <td> <%= f.label :work_phone%></td>
-    <td> <%= f.text_field :work_phone ,:placeholder => "180-XXX-XXX-XXXX"%></td>
+    <tr>
+      <td> <%= f.label :previous_experience %></td>
+      <td> <%= f.text_field :previous_experience,:required => true  %></td>
+      <td> <%= f.label :work_phone%></td>
+      <td> <%= f.text_field :work_phone ,:placeholder => "180-XXX-XXX-XXXX"%></td>
+    </tr>
 
-  </tr>
   <tr>
   <td/><td/>
   <td/><td><%= f.submit%></td>

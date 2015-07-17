@@ -2,14 +2,11 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource except: [:create]
   def index
   	@users = User.all
-    @designations=Designation.all.map{|d| [d.designation_name, d.id]}
-    @roles = Role.all.map{|d| [d.name, d.id]}
   end
 
   def new
   	@user = User.new
-    @designations=Designation.all.map{|d| [d.designation_name, d.id]}
-    @roles = Role.all.map{|d| [d.name, d.id]}
+    get_designation_and_role_data
   end
 
   def create
@@ -17,8 +14,7 @@ class Admin::UsersController < ApplicationController
  	  if @user.save
     	redirect_to admin_user_path(@user)
   	else
-  		@designations = Designation.all.map{|d| [d.designation_name, d.id]}
-      @roles = Role.all.map{|d| [d.name, d.id]}
+  		get_designation_and_role_data
    		render 'new'
   	end
   end
@@ -30,8 +26,7 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @designations = Designation.all.map{|d| [d.designation_name, d.id]}
-    @roles = Role.all.map{|d| [d.name, d.id]}
+    get_designation_and_role_data
   end
 
   def update
@@ -39,8 +34,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else
-      @designations = Designation.all.map{|d| [d.designation_name, d.id]}
-      @roles = Role.all.map{|d| [d.name, d.id]}
+      get_designation_and_role_data
       render 'edit'
     end
   end
@@ -55,4 +49,8 @@ class Admin::UsersController < ApplicationController
  	def user_params
     params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id, :password, :password_confirmation, :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :role_id, :is_active, :deactivated_on, :reason, :previous_experience, :work_phone)
  	end
+  def get_designation_and_role_data
+    @designations=Designation.pluck(:designation_name, :id)
+    @roles = Role.pluck(:name, :id)
+  end
 end
