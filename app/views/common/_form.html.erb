@@ -1,6 +1,6 @@
 
 <% if @user.errors.any? %>
-  <div id="error_explanation">
+  <div class="ui-state-error" id="error_explanation">
     <h2>
       <%= pluralize(@user.errors.count, "error") %> prohibited
       this user from being saved:
@@ -16,7 +16,7 @@
 <table class="form-style-10"  >
   <tr >
     <td> <%= f.label :first_name %> </td>
-    <td> <%= f.text_field :first_name ,:required => true ,:placeholder => "eg: John" %></td>
+    <td> <%= f.text_field :first_name ,:required => true %></td>
 
     <td> <%= f.label :middle_name %></td>
     <td> <%= f.text_field :middle_name %></td>
@@ -46,7 +46,7 @@
   <% end %>  
   <tr>
     <td> <%= f.label :date_of_birth, 'Date of Birth' %></td>
-    <td><%= f.date_field :date_of_birth %></td>
+    <td><%= f.text_field :date_of_birth , id: 'datepicker1' %></td>
     
     <td> <%= f.label :gender,'Gender' %></td>
     <td > <%= f.radio_button(:gender,:male) %>
@@ -61,7 +61,7 @@
 
   <tr>
     <td> <%= f.label :date_of_joining, 'Date of Joining' %></td>  
-    <td> <%= f.date_field :date_of_joining ,:required => true, class: 'datepicker'%></td>
+    <td> <%= f.text_field :date_of_joining , id: 'datepicker2', :required => true%></td>
 
     <td> <%= f.label :employee_id, "Employee ID"%></td>
     <td> <%= f.text_field :employee_id %></td>
@@ -97,7 +97,7 @@
     <tr class="check-value">
      
       <td><%= f.label :deactivated_on%></td>
-      <td><%= f.date_field :deactivated_on, class: 'datepicker'  %> </td>
+      <td><%= f.text_field :deactivated_on, id: 'datepicker3'  %> </td>
       <td><%= f.label :reason,'Reason' %></td>
       <td><%= f.select(:reason, options_for_select([[''],['No longer an employee with us'], ['Long Medical leave'], ['Absconding',]])) %></td></tr>
   <% end %>
