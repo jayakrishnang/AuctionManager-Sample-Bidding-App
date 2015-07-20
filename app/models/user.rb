@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :designation
-  belongs_to :roles
+  belongs_to :role
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/}
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\z/}
