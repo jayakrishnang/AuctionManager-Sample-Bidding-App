@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :designation
   belongs_to :role
+  #mount_uploader :avatar, AvatarUploader
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/}
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\z/}
@@ -16,5 +17,8 @@ class User < ActiveRecord::Base
   before_save :set_default_role
   def set_default_role
     self.role_id ||= Role.find_by_name("user").id
+  end
+  def calculate_total_experience
+    self.previous_experience + ((Date.today-self.date_of_joining)/365).round(2)
   end
 end
