@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   # end
   def show
   	@user = User.find(params[:id])
-    @total_experience = @user.previous_experience + ((Date.today-@user.date_of_joining)/365).round(2)
+    @total_experience = @user.calculate_total_experience
   end
   def edit
     @user = User.find(params[:id])
