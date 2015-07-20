@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
   def edit
     @user = User.find(params[:id])
-    @designations=Designation.all.map{|d| [d.designation_name, d.id]}
+    @designations=Designation.pluck(:designation_name, :id)
      end
   def update
     @user = User.find(params[:id])
