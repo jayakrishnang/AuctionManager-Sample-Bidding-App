@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :designation
   belongs_to :role
-  #mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/}
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\z/}

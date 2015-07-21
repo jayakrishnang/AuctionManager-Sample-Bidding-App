@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720055858) do
+ActiveRecord::Schema.define(version: 20150720082418) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150720055858) do
     t.integer  "failed_attempts",        limit: 4,     default: 0
     t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
+    t.string   "avatar",                 limit: 255
   end
 
   add_index "users", ["designation_id"], name: "index_users_on_designation_id", using: :btree
