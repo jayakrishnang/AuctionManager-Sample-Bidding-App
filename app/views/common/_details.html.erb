@@ -35,10 +35,12 @@
   <tr>    
     <td><strong>Work Phone:</strong> <%= @user.work_phone %></td>
   </tr>
-  <tr>
-    <td/><td><strong>Avatar:</strong></td>
-  </tr>
-  <tr>  
-    <td/><td><%= image_tag @user.avatar_url(:thumb) if @user.avatar? %></td>
-  </tr>
+  <% if @user.avatar? %>
+    <tr>
+      <td/><td><strong>Avatar:</strong></td>
+    </tr>
+    <tr>  
+      <td/><td><%= image_tag @user.avatar_url(:thumb) %></td>
+    </tr>
+  <% end %>
 </table>

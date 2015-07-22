@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # get 'user/kattashow'
   resources :users
   namespace :admin do
-    resources :users
+    resources :users do
+      get 'delete_avatar'
+    end
   end
 
   

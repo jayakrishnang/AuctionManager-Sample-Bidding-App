@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
   validates :login_id, presence: true, uniqueness: true
   validates :password, confirmation: true,  length: { in: 6..20 }, :on => :create
   validates :password_confirmation, presence: true, :on => :create
-  validates :deactivated_on, absence: true, if: :is_active
+  #validates :deactivated_on, absence: true, if: :is_active
   validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
   before_save :set_default_role
+
   def set_default_role
     self.role_id ||= Role.find_by_name("user").id
   end

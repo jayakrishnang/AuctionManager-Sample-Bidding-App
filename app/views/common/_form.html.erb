@@ -109,10 +109,14 @@
     </tr>
     <tr>
       <td> <%= f.label :avatar %></td>
-      <td> <%= f.file_field :avatar %> </td>
+      <td> <%= f.file_field :avatar, :onchange => "readURL(this)",id:"avatar" %> </td>
+
     </tr>
+
   <tr>
-  <td/><td/>
-  <td/><td><%= f.submit%></td>
+    <td/><td><%= image_tag @user.avatar_url(:thumb), id: "preview", height:"150",width: "150" %> <%= f.check_box :remove_avatar %>Remove</td>
+  </tr>
+  <tr>
+    <td/><td/><td/><td><%= f.submit%></td>
   </tr>
 </table>
