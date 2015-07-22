@@ -3,8 +3,9 @@ module Devise
     module Lockable
       def lock_access!(opts = { })
         self.locked_at = Time.now
-        p self.reason = "Multiple failed login attempts"
-        p self.deactivated_on = self.locked_at
+        self.reason = "Multiple failed login attempts"
+        self.deactivated_on = self.locked_at
+        self.is_active = :false
         if unlock_strategy_enabled?(:email) && opts.fetch(:send_instructions, true)
           send_unlock_instructions
         else
