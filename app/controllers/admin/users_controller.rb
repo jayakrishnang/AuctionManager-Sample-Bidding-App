@@ -11,8 +11,12 @@ class Admin::UsersController < ApplicationController
 
   def create
 	  @user = User.new(user_params)
- 	  if @user.save
-    	redirect_to admin_user_path(@user)
+    if @user.save
+      if params[:user][:avatar].present?
+        render :crop
+      else
+        redirect_to admin_user_path(@user)
+      end
   	else
   		get_designation_and_role_data
    		render 'new'
@@ -32,7 +36,11 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_user_path(@user)
+      if params[:user][:avatar].present?
+        render :crop
+      else
+        redirect_to admin_user_path(@user)
+      end
     else
       get_designation_and_role_data
       render 'edit'
@@ -47,7 +55,7 @@ class Admin::UsersController < ApplicationController
   
   private
  	def user_params
-    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id, :password, :password_confirmation, :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :role_id, :is_active, :deactivated_on, :reason, :previous_experience, :work_phone, :avatar, :remove_avatar)
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id, :password, :password_confirmation, :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :role_id, :is_active, :deactivated_on, :reason, :previous_experience, :work_phone, :avatar, :remove_avatar, :crop_x, :crop_y, :crop_w, :crop_h )
  	end
   def get_designation_and_role_data
     @designations=Designation.pluck(:designation_name, :id)
