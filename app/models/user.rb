@@ -14,10 +14,17 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, :on => :create
   #validates :deactivated_on, absence: true, if: :is_active
   validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
-  before_save :set_default_role
+  before_save :set_default_role, :revert_locked_data
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
 
+  def revert_locked_data
+    if self.status == "Active"
+      self.deactivated_on = nil
+      self.reason = nil
+    end
+  end
+  
   def crop_avatar
     avatar.recreate_versions! if crop_x.present?
   end

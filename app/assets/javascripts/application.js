@@ -18,16 +18,21 @@ $(function(){
 
   });
 
+  $("#remove").click(function(){
+    var check = confirm("Do yo Really Want to Remove Your Profile Picture");
+    if (check == true)
+    {
+      $("#preview").attr("src","/images/fallback/thumb_default.png");
+      $("#remover").hide();
+      $("#avatar").val("");
+      // #$("#remove").attr('checked', false);    
+    }
+    else
+    {
+      $("#remove").attr('checked', false);
+    }
+  });
 
-  $("input:checkbox[name='user[remove_avatar]']").change(function(){ 
-         
-    if(this.value == "false" && this.checked){
-        $(".remove-avatar").show();
-    }else{
-        $(".remove-avatar").hide();
-  }
-
-});
 
 
 $( "#datepicker1" ).datepicker({ changeYear: true, changeMonth: true, yearRange: '1950:2000',dateFormat: 'yy-mm-dd'});
@@ -36,12 +41,14 @@ $( "#datepicker3" ).datepicker({ changeYear: true, changeMonth: true, yearRange:
 });
 
 function readURL(input) {
+
+   $("#remover").show();
+   $("#remove").attr('checked', false);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             document.getElementById('preview').src=e.target.result;
         }
         reader.readAsDataURL(input.files[0]);
-        user[remove_avatar]=0
     }
 }
