@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
   def create
 	  @user = User.new(user_params)
     if @user.save
-      if params[:user][:avatar].present?
+      if (params[:user][:avatar].present? && params[:crop])
         render :crop
       else
         redirect_to admin_user_path(@user)
@@ -36,7 +36,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      if params[:user][:avatar].present?
+      if (params[:user][:avatar].present? && params[:crop])
         render :crop
       else
         redirect_to admin_user_path(@user)

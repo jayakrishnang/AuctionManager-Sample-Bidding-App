@@ -2,7 +2,7 @@
 <%= image_tag @user.avatar_url(:large), id: "cropbox" %>
 <%= form_for [:admin,@user] do |f| %>
 	<% %w[x y w h].each do |attribute| %>
-		<%= f.text_field "crop_#{attribute}" %>
+		<%= f.hidden_field "crop_#{attribute}" %>
 	<% end %>
 	<div class = "actions">
 		<%= f.submit "Crop" %>
