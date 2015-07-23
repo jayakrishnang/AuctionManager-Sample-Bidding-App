@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723064033) do
+ActiveRecord::Schema.define(version: 20150723130834) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20150723064033) do
     t.text     "education",              limit: 65535
     t.text     "comments",               limit: 65535
     t.boolean  "is_locked"
-    t.boolean  "is_active"
     t.date     "deactivated_on"
     t.text     "reason",                 limit: 65535
     t.string   "work_phone",             limit: 255
