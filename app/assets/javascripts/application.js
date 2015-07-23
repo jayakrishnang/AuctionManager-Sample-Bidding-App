@@ -8,9 +8,9 @@ $(function(){
 
   $(".check-value").hide();
    
-  $("input:radio[name='user[is_active]']").change(function(){ 
+  $("input:radio[name='user[status]']").change(function(){ 
          
-    if(this.value == "false" && this.checked){
+    if(this.value == "Locked" && this.checked){
       $(".check-value").show();
     }else{
       $(".check-value").hide();

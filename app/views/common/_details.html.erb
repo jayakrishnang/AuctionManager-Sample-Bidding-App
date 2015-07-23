@@ -22,7 +22,7 @@
   </tr>
   <% if params[:controller] == "admin/users" %>
     <tr>
-      <td><strong>Is Active??:</strong> <%= @user.is_active %></td>
+      <td><strong>Status:</strong> <%= @user.status %></td>
       <td><strong>Deactivated On:</strong> <%= @user.deactivated_on %></td>
       <td><strong>Reason:</strong> <%= @user.reason %></td>
     </tr>

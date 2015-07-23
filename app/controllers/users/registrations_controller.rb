@@ -1,4 +1,4 @@
-class User::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
@@ -8,7 +8,16 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   super
   #   redirect_to @user
   # end
-  # protected
+  # def after_sign_in_path_for(resource)
+  #   @user = User.find(params[:id])
+  #   p "Entered after sign in path........................................"
+  #   if @user.status=="Active"
+  #     p "Entered condition"
+  #     admin_users_path
+  #   else
+  #     reset_session
+  #   end
+  # end
   # def after_sign_up_path_for(resource)
   #   user_path(resource)
   # end

@@ -87,11 +87,11 @@
 
     <tr>
 
-      <td> <%= f.label :is_active,'Status' %></td>
-      <td> <%= f.radio_button(:is_active,true) %>
-           <%= f.label :is_active,"Is Active" %>
-           <%= f.radio_button(:is_active,false) %>
-           <%= f.label :is_active,"Is Locked" %></td>
+      <td> <%= f.label :status %></td>
+      <td> <%= f.radio_button(:status,"Active") %>
+           <%= f.label :status,"Active" %>
+           <%= f.radio_button(:status,"Locked") %>
+           <%= f.label :status,"Locked" %></td>
     </tr>
     <tr class="check-value">
      
@@ -115,7 +115,7 @@
     <td/><td><%= image_tag @user.avatar_url(:thumb), id: "preview", height:"150",width: "150" %> <%= f.check_box :remove_avatar %>Remove</td>
   </tr>
   <tr>
-    <td/><td/><td><%= f.submit 'SUBMIT' %></td>
+    <td/><td/><td><%= f.submit %></td>
     <td><%= f.submit 'CROP', name: 'crop' %></td>
   </tr>
 </table>

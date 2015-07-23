@@ -5,7 +5,7 @@ module Devise
         self.locked_at = Time.now
         self.reason = "Multiple failed login attempts"
         self.deactivated_on = self.locked_at
-        self.is_active = :false
+        self.is_locked = 1
         if unlock_strategy_enabled?(:email) && opts.fetch(:send_instructions, true)
           send_unlock_instructions
         else
@@ -14,7 +14,7 @@ module Devise
       end
       def unlock_access!
         self.locked_at = nil
-        self.is_active = 1
+        self.is_locked = nil
         self.reason = nil
         self.deactivated_on = nil
         self.failed_attempts = 0 if respond_to?(:failed_attempts=)

@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   end
   protected
   def after_sign_in_path_for(resource)
-    admin_users_path
+    if current_user.status=="Active"
+      admin_users_path
+    else
+      reset_session
+    end
   end
 end
