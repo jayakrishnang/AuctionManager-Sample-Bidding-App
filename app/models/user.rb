@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, :on => :create
   #validates :deactivated_on, absence: true, if: :is_active
   validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
-  # before_save :set_default_values, :revert_locked_data
+  before_save :set_default_values, :revert_locked_data
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
 
@@ -32,10 +32,10 @@ class User < ActiveRecord::Base
     avatar.recreate_versions! if crop_x.present?
   end
 
-  # def set_default_values
-  #   self.role_id ||= Role.find_by_name("user").id
-  #   self.status ||= "Active"
-  # end
+  def set_default_values
+    self.role_id ||= Role.find_by_name("user").id
+    self.status ||= "Active"
+  end
   def calculate_total_experience
     self.previous_experience + ((Date.today-self.date_of_joining)/365).round(2)
   end
