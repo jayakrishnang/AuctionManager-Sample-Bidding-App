@@ -1,5 +1,8 @@
 FactoryGirl.define do 
-	factory :role do |f|
-		f.name "user"
+	factory :role do
+		name "user"
+	end
+	factory :admin, class: Role do 
+		name "admin"
 	end
 end
