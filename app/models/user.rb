@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_values
-    self.role_id ||= Role.find_by_name("user").id
+    self.role_id ||= Role.find_by_name("user").try(id)
     self.status ||= "Active"
   end
   def calculate_total_experience

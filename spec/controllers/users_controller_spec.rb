@@ -1,60 +1,63 @@
-require 'spec_helper'
-RSpec.describe Admin::UsersController do
-	before(:each) do
-		@role = FactoryGirl.create(:role,:name => "admin")
-		@user = FactoryGirl.create(:user,:role => @role)
-		sign_in @user
-	end
-	describe "GET index" do
-    it "renders the index view" do
-    	get :index
-    	expect(response).to render_template :index
+require 'rails_helper'
+
+RSpec.describe Admin::UsersController, type: :controller do
+	before (:each) do
+    @role = FactoryGirl.create(:role , :name => "admin")
+    @designation = FactoryGirl.create(:designation , :designation_name => "Trainee")
+    @user = FactoryGirl.create(:admin_user,:role => @role)
+    sign_in @user
+  end
+ 
+  describe "GET #index" do
+    it "renders index view" do
+      get :index
+      expect(response).to render_template("index")
+    end
+
+    it "assigns users" do 
+      get :index
+      expect(assigns(:users)).to eq([@user]) 
+    end   
+  end
+
+  describe "GET #show" do 
+    it "assigns requested user to @user" do 
+      get :show, id: @user 
+      expect(assigns(:user)).to eq(@user) 
+    end 
+
+    it "renders the #show view" do 
+      get :show, id: @user
+      expect(response).to render_template :show 
+    end 
+  end 
+  describe "GET #new" do
+    it "should create a new registration page" do
+      get :new
+      expect(response).to render_template("new")
     end
   end
-  describe "GET #show" do
-  	it "assigns the requested user to @user" do
-  		get :show, id: @user
-  		expect(assigns(:user)).to eq(@user)
-  	end
-  	it "renders the #show view" do
-  		get :show, id: @user
-  		expect(response).to render_template :show
-  	end
+
+  describe 'POST #create' do
+    context 'with valid details' do
+      it 'creates user' do
+        post :create, user: FactoryGirl.attributes_for(:user,:role_id => @role,:designation_id => @designation) 
+        @user = User.last 
+        expect(response).to redirect_to [:admin,@user]
+      end
+    end
+    context 'when form is invalid' do
+      it 'renders the page with error' do
+        post :create, user: FactoryGirl.attributes_for(:user,:first_name => "",:role_id => @role,:designation_id => @designation)  
+        expect(response).to render_template("new")
+      end
+    end
   end
-  describe "GET #edit" do
-  	it "edits the requested user" do
-  		get :edit, id: @user
-  		expect(assigns(:user)).to eq(@user)
-  	end
-  	it "renders the #edit view" do
-  		get :edit, id: @user
-  		expect(response).to render_template :edit
-  	end
-  end
-  describe "POST create" do
-  	context "with valid attributes" do
-  		it "creates a new user" do
-  			post :create, user: FactoryGirl.attributes_for(:user)
-  			expect(@user).to eq(User.last)
-   			expect(response.status).to eq(200)
-  		end
-  		it "redirects to the user details after creation" do
-  			post :create, user: FactoryGirl.attributes_for(:user)
-  			expect(@user).to be_valid
-   			expect(response.status).to eq(200)
-  			expect(response).to render_template :new
-  		end
-  	end
-  	context "with invalid attributes" do
-  		it "does not save the new user" do
-  			expect{
-  				post :create, user: FactoryGirl.attributes_for(:user, first_name: '')
-  			}.to_not change(User,:count)
-  		end
-  		it "renders the new method again" do
-  			post :create, user: FactoryGirl.attributes_for(:user, first_name: '')
-  			expect(response).to render_template :new
- 			end
- 		end
- 	end
+  
+  describe "GET #delete" do
+    it "redirects to admin  index" do 
+     	delete :destroy, id: @user 
+     	expect(response).to redirect_to admin_users_path
+   	end
+  end  	
 end
