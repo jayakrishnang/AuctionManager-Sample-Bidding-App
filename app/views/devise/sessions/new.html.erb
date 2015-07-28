@@ -1,9 +1,10 @@
 <div class="login">
 <div class="login-screen" >
 <h2 class="app-title">Log in</h2>
-
+<div id="session">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="login-form" >
+
 <div class="control-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true , class: :input %>
@@ -22,7 +23,9 @@
     <%= f.submit "Log in", class: :btn %>
   </div>
 </div>
+
 <% end %>
+</div>
 </div>
 <div align="center">
 <%= render "devise/shared/links" %>
