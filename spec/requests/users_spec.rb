@@ -1,14 +1,14 @@
 require 'rails_helper'
 RSpec.describe "Users", type: :request do
   before (:each) do
-    @role = FactoryGirl.create(:role , :name => "admin")
+    @role = FactoryGirl.create(:admin)
     @designation = FactoryGirl.create(:designation , :designation_name => "Trainee")
-    @user = FactoryGirl.create(:admin_user,:role => @role)
+    @user = FactoryGirl.create(:admin_user,:role => @role, :designation => @designation)
   end
   it "signs me in" do
     visit new_user_session_path
     within("#session") do
-      fill_in 'Email', :with => 'mathewthomas@yahoo.com'
+      fill_in 'Email', :with => 'mathewthomas@gmail.com'
       fill_in 'Password', :with => 'password'
     end
     click_button 'Log in'

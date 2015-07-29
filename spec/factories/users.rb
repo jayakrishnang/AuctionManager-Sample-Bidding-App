@@ -20,12 +20,12 @@ FactoryGirl.define do
 	factory :admin_user, class: User do 
 	 	first_name "Mathew" 
 	 	last_name "Thomas" 
-	 	email "mathewthomas@yahoo.com"
+	 	email "mathewthomas@gmail.com"
 	 	login_id "mathewthomas"
 	 	password "password"
 	 	password_confirmation "password"
 	 	previous_experience 2.0
-	 	status "Locked"
+	 	status "Active"
 		date_of_joining '2014-07-27'
 	 	work_phone "180-111-222-3333"
   end
