@@ -59,7 +59,7 @@ class Admin::UsersController < ApplicationController
     params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id, :password, :password_confirmation, :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :role_id, :status, :deactivated_on, :reason, :previous_experience, :work_phone, :avatar, :remove_avatar, :crop_x, :crop_y, :crop_w, :crop_h )
  	end
   def get_designation_and_role_data
-    @designations=Designation.designation_list
-    @roles = Role.role_list
+    @designations=Designation.pluck(:designation_name, :id)
+    @roles = Role.pluck(:name, :id)
   end
 end
