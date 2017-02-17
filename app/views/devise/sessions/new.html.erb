@@ -8,8 +8,8 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="login-form" >
           <div class="control-group">
-            <%= f.label :email %>
-            <%= f.email_field :email, autofocus: true , class: :input %>
+            <%= f.label :login_id %>
+            <%= f.text_field :login_id, autofocus: true , class: :input %>
           </div>
           <div class="control-group">
             <%= f.label :password %>
