@@ -1,46 +1,18 @@
 <table class="form-style-10">
   <h1 id="label" align="center"> ENTERED DETAILS </h1>
   <tr>
-    <td><strong>Name:</strong> <%= @user.first_name %></td>
-    <td><strong>Middle Name:</strong> <%= @user.middle_name %></td>
-    <td><strong>Last Name:</strong> <%= @user.last_name %></td>
+    <td align="left"><strong>Name:</strong> <%= @user.first_name %> <%=  @user.middle_name %> <%= @user.last_name %></td>
+    <td align="left"><strong>Base Points:</strong> <%= @user.base_points%></td>
+    <td align="left"><strong>Sold Points:</strong> <%= @user.sold_points || '--' %></td>
   </tr>
+  <tr/>
   <tr>
-    <td><strong>Email:</strong> <%= @user.email %></td> 
-    <td><strong>Login ID:</strong> <%= @user.login_id %></td>
-    <td><strong>Date of Birth:</strong> <%= @user.date_of_birth %></td>
-  </tr>
-  <tr>
-    <td><strong>Gender:</strong> <%= @user.gender %></td>
-    <td><strong>Time Zone:</strong> <%= @user.time_zone %></td>
-    <td><strong>Designation ID:</strong> <%= @user.designation.designation_name %></td>
-  </tr>
-  <tr>
-    <td><strong>Date of Joining:</strong> <%= @user.date_of_joining %></td>
-    <td><strong>Education:</strong> <%= @user.education %></td>
-    <td><strong>Comments:</strong> <%= @user.comments %></td>
-  </tr>
-  <% if params[:controller] == "admin/users" %>
-    <tr>
-      <td><strong>Status:</strong> <%= @user.status %></td>
-      <td><strong>Deactivated On:</strong> <%= @user.deactivated_on %></td>
-      <td><strong>Reason:</strong> <%= @user.reason %></td>
-    </tr>
-    <tr>
-      <td><strong>Role:</strong> <%= @user.role.name %></td>
-  <% end %>
-    <td><strong>Previous Experience:</strong> <%= @user.previous_experience %></td>
-    <td><strong>Total Experience:</strong> <%= @total_experience %></td>
-  </tr>
-  <tr>    
-    <td><strong>Work Phone:</strong> <%= @user.work_phone %></td>
+    <td align="left"><strong>Team:</strong> <%= @user.get_team_name || '--' %></td>
   </tr>
   <% if @user.avatar? %>
-    <tr>
-      <td/><td><strong>Avatar:</strong></td>
-    </tr>
+    <tr/>
     <tr>  
-      <td/><td><%= image_tag @user.avatar_url(:thumb) %></td>
+      <td align="left"><%= image_tag @user.avatar_url(:thumb) %></td>
     </tr>
   <% end %>
 </table>

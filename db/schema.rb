@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723130834) do
+ActiveRecord::Schema.define(version: 20170216220159) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20150723130834) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string  "name",        limit: 255
+    t.integer "purse_spent", limit: 4
+    t.integer "total_purse", limit: 4
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,6 +87,10 @@ ActiveRecord::Schema.define(version: 20150723130834) do
     t.datetime "locked_at"
     t.string   "avatar",                 limit: 255
     t.string   "status",                 limit: 255
+    t.integer  "base_points",            limit: 4
+    t.integer  "sold_points",            limit: 4
+    t.integer  "team_id",                limit: 4
+    t.string   "team_status",            limit: 255
   end
 
   add_index "users", ["designation_id"], name: "index_users_on_designation_id", using: :btree

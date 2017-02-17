@@ -48,7 +48,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: http://github.com/rails/spring
   gem 'spring'
   gem 'launchy'
-
+  gem 'pry-rails'
 end
 
 group :test do

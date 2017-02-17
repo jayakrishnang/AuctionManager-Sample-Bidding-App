@@ -5,15 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :designation
   belongs_to :role
+  belongs_to :team
   mount_uploader :avatar, AvatarUploader
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/}
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\z/}
-  validates :login_id, presence: true, uniqueness: true
-  validates :password, confirmation: true,  length: { in: 6..20 }, :on => :create
-  validates :password_confirmation, presence: true, :on => :create
+  # validates :email, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\z/}
   #validates :deactivated_on, absence: true, if: :is_active
-  validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
+  # validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
   before_save :set_default_values, :revert_locked_data
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
@@ -33,10 +31,14 @@ class User < ActiveRecord::Base
   end
 
   def set_default_values
-    self.role_id ||= Role.find_by_name("user").try(id)
+    self.role_id ||= Role.find_by_name("user").try(:id)
     self.status ||= "Active"
   end
   def calculate_total_experience
-    self.previous_experience + ((Date.today-self.date_of_joining)/365).round(2)
+    # self.previous_experience + ((Date.today-self.date_of_joining)/365).round(2)
+  end
+
+  def get_team_name
+    team.try(:name)
   end
 end

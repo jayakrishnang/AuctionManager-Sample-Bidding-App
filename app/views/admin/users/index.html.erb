@@ -1,34 +1,31 @@
-<h1 align="center">ADMIN PAGE</h1>
-
-<br/><%= link_to 'New User', new_admin_user_path, data: { no_turbolink: true }  %>
+<h1 align="center">RCL AUCTION HOME</h1>
 <table class="flat-table flat-table-1" align="center" >
-
   <tr>
     <th>First Name</th>
-    <th>Middle Name</th>
     <th>Last Name</th>
-    <th>Email</th>
-    <th>Login ID</th>
-    <th>Employee ID</th>
-    <th>Designation</th>
+    <th>Team</th>
+    <th>Base Points</th>
+    <th>Sold Points</th>
     <th/>
     <th>Options</th>
     <th colspan="2"></th>
   </tr>
- 
   <% @users.each do |user| %>
     <tr>
       <td><%= user.first_name %></td>
-      <td><%= user.middle_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.login_id %></td>
-      <td><%= user.employee_id %></td>
-      <td><%= user.designation.designation_name %></td>
-      <td><%= link_to "Edit", edit_admin_user_path(user), data: { no_turbolink: true } %></td>
-      <td>&nbsp&nbsp<%= link_to "Show Full Details", admin_user_path(user)%></td>
+      <td align="left"><%= user.middle_name %> <%= user.last_name %></td>
+      <td align="center"><%= user.get_team_name || '--' %></td>
+      <td align="center"><%= user.base_points %></td>
+      <td align="center"><%= user.sold_points %></td>
+      <% if current_user.role.name == 'admin' %>
+        <td><%= link_to "Edit", edit_admin_user_path(user), data: { no_turbolink: true }, :class => 'myButton' %></td>
+      <% end %>
+      <td>&nbsp&nbsp<%= link_to "Show Full Details", admin_user_path(user), :class => 'myButton' %></td>
       <td>&nbsp&nbsp<%= link_to 'Delete', admin_user_path(user), confirm: 'Are you sure?',
-              :method => :delete %></td>
+              :method => :delete, :class => 'myButton' %></td>
     </tr>
   <% end %>
 </table>
+<div align="center">
+  <%= link_to 'New User', new_admin_user_path, data: { no_turbolink: true }, id:'myButton', :class => 'myButton' %>
+</div>

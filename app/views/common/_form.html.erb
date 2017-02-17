@@ -43,69 +43,7 @@
 
     </tr>
   <% end %>  
-  <tr>
-    <td> <%= f.label :date_of_birth, 'Date of Birth' %></td>
-    <td><%= f.text_field :date_of_birth , id: 'datepicker1' %></td>
-    
-    <td> <%= f.label :gender,'Gender' %></td>
-    <td > <%= f.radio_button(:gender,:male) %>
-         <%= f.label :gender,"Male" %>
-         <%= f.radio_button(:gender,:female) %>
-         <%= f.label :gender,"Female" %></td>
 
-    <td> <%= f.label :time_zone,'Time Zone' %></td>
-    <td> <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones) %></td>
-
-  </tr>
-
-  <tr>
-    <td> <%= f.label :date_of_joining, 'Date of Joining' %></td>  
-    <td> <%= f.text_field :date_of_joining , id: 'datepicker2', :required => true%></td>
-
-    <td> <%= f.label :employee_id, "Employee ID"%></td>
-    <td> <%= f.text_field :employee_id %></td>
-
-
-    <td> <%= f.label :designation_id,'Desgination' %></td>
-    <td> <%= f.select(:designation_id, Designation.all.map{|d| [d.designation_name, d.id]}) %></td>
-
-  </tr>
-
-  <tr>
-    <td> <%= f.label :education %></td>
-    <td> <%= f.text_area :education %></td>
-
-    <td> <%= f.label :comments %></td>
-    <td> <%= f.text_area :comments %></td>
-
-  <% if params[:controller] == "admin/users" %>
-
-      <td> <%= f.label :role_id,'Role' %></td>
-      <td> <%= f.select(:role_id, @roles) %></td>
-
-    </tr>
-
-    <tr>
-
-      <td> <%= f.label :status %></td>
-      <td> <%= f.radio_button(:status,"Active") %>
-           <%= f.label :status,"Active" %>
-           <%= f.radio_button(:status,"Locked") %>
-           <%= f.label :status,"Locked" %></td>
-    </tr>
-    <tr class="check-value">
-     
-      <td><%= f.label :deactivated_on%></td>
-      <td><%= f.text_field :deactivated_on, id: 'datepicker3'  %> </td>
-      <td><%= f.label :reason,'Reason' %></td>
-      <td><%= f.select(:reason, options_for_select([[''],['No longer an employee with us'], ['Long Medical leave'], ['Absconding',]])) %></td></tr>
-  <% end %>
-    <tr>
-      <td> <%= f.label :previous_experience %></td>
-      <td> <%= f.text_field :previous_experience,:required => true  %></td>
-      <td> <%= f.label :work_phone%></td>
-      <td> <%= f.text_field :work_phone ,:placeholder => t('work_phone') %></td>
-    </tr>
     <tr>
       <td> <%= f.label :avatar %></td>
       <td> <%= f.file_field :avatar, :onchange => "readURL(this)",id:"avatar" %> </td>

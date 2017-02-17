@@ -1,32 +1,36 @@
-<div class="login">
-  <div class="login-screen" >
-  <h2 class="app-title">Log in</h2>
-  <div id="session">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="login-form" >
-        <div class="control-group">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true , class: :input %>
-        </div>
-        <div class="control-group">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off" , class: :input %>
-          <% if devise_mapping.rememberable? -%>
-        </div>
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+<body class="back">
+  <h1 align="center">RCL POWERPLAY</h1>
+  <h4 align="center">"The Online Auction Manager"</h4>
+  <div class="login">
+    <div class="login-screen" >
+    <h2 class="app-title">Log in</h2>
+    <div id="session">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="login-form" >
+          <div class="control-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true , class: :input %>
+          </div>
+          <div class="control-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "off" , class: :input %>
+            <% if devise_mapping.rememberable? -%>
+          </div>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
 
-          <% end -%>
+            <% end -%>
 
-        <div align="center">
-          <%= f.submit "Log in", class: :btn %>
+          <div align="center">
+            <%= f.submit "Log in", class: :btn %>
+          </div>
         </div>
-      </div>
 
-    <% end %>
+      <% end %>
+    </div>
+    </div>
+    <div align="center">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-  </div>
-  <div align="center">
-    <%= render "devise/shared/links" %>
-  </div>
-</div>
+</body>
