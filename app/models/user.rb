@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :designation
   belongs_to :role
   belongs_to :team
+  has_many :bid_logs
   mount_uploader :avatar, AvatarUploader
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/}
   validates :last_name, presence: true
@@ -13,6 +14,7 @@ class User < ActiveRecord::Base
   #validates :deactivated_on, absence: true, if: :is_active
   # validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
   before_save :set_default_values, :revert_locked_data
+  sync :all
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
 
