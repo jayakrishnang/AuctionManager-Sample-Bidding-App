@@ -1,1 +1,2 @@
-<b><%= @bid_log.amount rescue nil%></b>
+<th align="left">Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%></th>
+<th align="left">Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%></th>

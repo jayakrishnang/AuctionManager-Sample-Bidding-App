@@ -6,6 +6,11 @@ class TeamOwner::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.team_status == 'UNSOLD'
+      @bid_log = BidLog.new
+    else
+      @bid_log = BidLog.last
+    end
     @total_experience = @user.calculate_total_experience
   end
 end

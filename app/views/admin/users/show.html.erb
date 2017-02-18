@@ -1,12 +1,15 @@
-<%= render :partial =>'common/details'%>
-<h3>Bids</h3>
-<%= sync partial: 'bid_log_row', resource: @bid_log %>
-
+<table class="form-style-10">
+    <%= render :partial =>'common/details'%>
+    <%= sync partial: 'bid_log_row', resource: @bid_log %>
+  </tr>
+  <tr>
+    <%= form_for BidLog.new, :controller => "admin/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
+      <%= f.hidden_field :player_id, value: @user.id %>
+        <td align="right"><%= f.number_field :amount, min:0 %></td>
+        <td align="left"><%= f.submit 'Submit' %></td>
+    <% end %>
+  </tr>
+</table>
 
 <hr>
-<%= form_for BidLog.new, :controller => "admin/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
-    <%= f.text_field :amount %>
-    <%= f.hidden_field :player_id, value: @user.id %>
-    <%= f.submit 'Submit' %>
-<% end %>
 <a href="<%= admin_users_path %>">Back</a>
