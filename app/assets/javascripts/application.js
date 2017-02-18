@@ -3,6 +3,7 @@
 //= require jquery_ujs
 //= require jquery.Jcrop
 //= require turbolinks
+//= require sync 
 //= require_tree .
 $(function(){
 

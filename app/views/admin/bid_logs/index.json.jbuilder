@@ -1,0 +1,1 @@
+json.array! @bid_logs, partial: 'bid_logs/bid_log', as: :bid_log

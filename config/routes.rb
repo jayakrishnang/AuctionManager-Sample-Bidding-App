@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   #get 'users/login'
   # get 'user/kattashow'
   resources :users
+  resources :bid_logs
   namespace :admin do
     resources :users do
       get 'delete_avatar'

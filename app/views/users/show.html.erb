@@ -2,4 +2,15 @@
   <%= render :partial =>'common/details'%>
 <%= link_to "Edit", edit_user_path(@user)%>
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
+
+<h3>Bids</h3>
+<%= sync partial: 'bid_log_row', resource: @bid_log %>
+
+
+<hr>
+<%= form_for BidLog.new, :controller => "bid_logs", :action => "create", :html => { :method => :post} do |f| %>
+    <%= f.text_field :amount %>
+    <%= f.hidden_field :player_id, value: @user.id %>
+    <%= f.submit 'Submit' %>
+<% end %>
 <% end %>

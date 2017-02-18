@@ -21,7 +21,12 @@ class UsersController < ApplicationController
   # 	end
   # end
   def show
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    if @user.team_status == 'UNSOLD'
+      @bid_log = BidLog.new
+    else
+      @bid_log = BidLog.last
+    end
     @total_experience = @user.calculate_total_experience
   end
   def edit
@@ -44,6 +49,6 @@ class UsersController < ApplicationController
 
   private
  	def user_params
-    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id,  :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :previous_experience, :work_phone, :avatar, :remove_avatar, :crop_x, :crop_y, :crop_w, :crop_h )
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :email, :login_id,  :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining, :education, :comments, :previous_experience, :work_phone, :avatar, :remove_avatar, :crop_x, :crop_y, :crop_w, :crop_h, :team_status)
  	end
 end
