@@ -8,13 +8,11 @@ class BidLogsController < ApplicationController
   end
 
   def create
-    binding.pry
     @bid_log = current_user.bid_logs.build(bid_log_params)
     
     if @bid_log.save
       sync_new @bid_log
     end
-    # binding.pry
     respond_to do |format|
       format.html { redirect_to user_path(@bid_log.player_id) }
       format.json { head :no_content }
