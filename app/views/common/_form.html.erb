@@ -42,6 +42,12 @@
       <td > <%= f.password_field :password_confirmation ,:required => true  %></td>
 
     </tr>
+    <tr>
+      <% if params[:controller] == "admin/users" %>
+        <td> <%= f.label :role_id,'Role' %></td>
+        <td> <%= f.select(:role_id, @roles) %></td>
+      <% end %>
+    </tr>
   <% end %>  
 
     <tr>

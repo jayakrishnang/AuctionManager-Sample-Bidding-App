@@ -1,0 +1,2 @@
+module TeamOwner::UsersHelper
+end

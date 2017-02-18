@@ -14,6 +14,11 @@ Rails.application.routes.draw do
       get 'delete_avatar'
     end
   end
+  namespace :team_owner do
+    resources :users do
+      get 'delete_avatar'
+    end
+  end
 
   
   # The priority is based upon order of creation: first created -> highest priority.

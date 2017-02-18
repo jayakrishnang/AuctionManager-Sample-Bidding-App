@@ -29,10 +29,12 @@ class UsersController < ApplicationController
     end
     @total_experience = @user.calculate_total_experience
   end
+
   def edit
     @user = User.find(params[:id])
-    @designations=Designation.pluck(:designation_name, :id)
-     end
+    @designations = Designation.pluck(:designation_name, :id)
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
