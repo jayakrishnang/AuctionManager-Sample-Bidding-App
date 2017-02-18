@@ -1,18 +1,15 @@
-<table class="form-style-10">
   <h1 id="label" align="center"> ENTERED DETAILS </h1>
   <tr>
-    <td align="left"><strong>Name:</strong> <%= @user.first_name %> <%=  @user.middle_name %> <%= @user.last_name %></td>
-    <td align="left"><strong>Base Points:</strong> <%= @user.base_points%></td>
-    <td align="left"><strong>Sold Points:</strong> <%= @user.sold_points || '--' %></td>
+    <td align="left"><strong>Name: <%= @user.first_name %> <%=  @user.middle_name %> <%= @user.last_name %></strong></td>
+    <td align="left"><strong>Base Points: <%= @user.base_points%></strong></td>
+    <td align="left"><strong>Sold Points: <%= @user.sold_points || '--' %></strong></td>
   </tr>
   <tr/>
   <tr>
-    <td align="left"><strong>Team:</strong> <%= @user.get_team_name || '--' %></td>
+    <td align="left"><strong>Team: <%= @user.get_team_name || '--' %></strong> </td>
   </tr>
   <% if @user.avatar? %>
     <tr/>
-    <tr>  
-      <td align="left"><%= image_tag @user.avatar_url(:thumb) %></td>
-    </tr>
+    <tr id="bid_log_row">
+      <td rowspan="3" align="left"><%= image_tag @user.avatar_url(:thumb) %></td>
   <% end %>
-</table>

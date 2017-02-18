@@ -14,7 +14,7 @@ class BidLogsController < ApplicationController
       sync_new @bid_log
     end
     respond_to do |format|
-      format.html { redirect_to admin_user_path(@bid_log.player_id) }
+      format.html { redirect_to team_owner_user_path(@bid_log.player_id) }
       format.json { head :no_content }
     end
   end
