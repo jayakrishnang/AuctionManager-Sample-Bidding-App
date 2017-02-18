@@ -11,6 +11,6 @@ class TeamOwner::UsersController < ApplicationController
     else
       @bid_log = BidLog.last
     end
-    @total_experience = @user.calculate_total_experience
+    @new_bid_log = BidLog.new
   end
 end

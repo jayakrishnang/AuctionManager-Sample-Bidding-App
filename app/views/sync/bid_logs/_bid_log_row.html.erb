@@ -1,2 +1,7 @@
-<th align="left">Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%></th>
-<th align="left">Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%></th>
+<script type="text/javascript">
+	$('#BidSummary').hide();
+</script>
+<div id="BidSummary">
+	Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
+	Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
+</div>
