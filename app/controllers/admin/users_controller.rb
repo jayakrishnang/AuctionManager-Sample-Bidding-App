@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
     else
       @bid_log = BidLog.last
     end
-    @total_experience = @user.calculate_total_experience
+    @new_bid_log = BidLog.new
   end
   
   def edit
@@ -56,6 +56,10 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_path
+  end
+
+  def close_bid
+    #to_be_written
   end
   
   private

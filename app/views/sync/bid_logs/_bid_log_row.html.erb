@@ -1,7 +1,14 @@
+<%= hidden_field_tag :bid_log_present, @bid_log.amount.present? %>
 <script type="text/javascript">
-	$('#BidSummary').hide();
+	if(document.getElementById('bid_log_present').value == 'true'){
+		if(document.getElementById('BidSummary') != null){
+			document.getElementById('BidSummary').remove();
+		}
+	}
 </script>
-<div id="BidSummary">
-	Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
-	Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
-</div>
+<% if @bid_log.amount.present? %>
+	<div id="BidSummary">
+		Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
+		Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
+	</div>
+<% end %>
