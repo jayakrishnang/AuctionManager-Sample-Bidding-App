@@ -15,4 +15,4 @@ test:
  password: password
 
  production:
-  <<: *default
+  <<: *development
