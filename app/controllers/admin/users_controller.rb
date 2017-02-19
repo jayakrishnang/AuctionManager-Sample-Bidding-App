@@ -11,6 +11,7 @@ class Admin::UsersController < ApplicationController
 
   def create
 	  @user = User.new(user_params)
+    @user.team_status = 'UNSOLD'
     if @user.save
       if (params[:user][:avatar].present? && params[:crop])
         render :crop
@@ -25,6 +26,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.where(id: params[:id]).first
+    @teams = Team.get_team_stats
     @next_user = User.where('id > ? AND role_id = ?', params[:id], Role.get_user_role_id).limit(1).first
     if @user.team_status == 'UNSOLD'
       @bid_log = BidLog.new
