@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users do
       get 'delete_avatar'
+      post 'close_bid'
     end
   end
   namespace :team_owner do

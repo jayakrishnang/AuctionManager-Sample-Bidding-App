@@ -43,4 +43,16 @@ class User < ActiveRecord::Base
   def get_team_name
     team.try(:name)
   end
+
+  def sell_player
+    bid = BidLog.where(player_id: id).group('amount DESC').first
+    bidder = bid.user
+    self.update_attributes(team_id: bidder.team_id, team_status: 'SOLD', sold_points: bid.amount)
+  end
+
+  def update_team_status
+    if team_status == 'UNSOLD'
+      self.update_attributes(team_status: 'BIDDING')
+    end
+  end
 end
