@@ -9,8 +9,13 @@
     <%= form_for @new_bid_log, :controller => "team_owner/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
         <td align="right"><%= f.number_field :amount, min:0 %></td>
-        <td align="left"><%= f.submit 'Submit' %></td>
+        <td align="left"><%= f.submit 'Submit', id: 'submit_button' %></td>
     <% end %>
   </tr>
 </table>
+<div align="center" style="padding-left:800px">
+  <% if @next_user.present? %>
+    <%= link_to "Next Player", team_owner_user_path(@next_user), :class => 'myButton' %>
+  <% end %>
+</div>
 <a href="<%= team_owner_users_path %>">Back</a>

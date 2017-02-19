@@ -1,6 +1,7 @@
 <table class="form-style-10">
     <%= render :partial =>'common/details'%>
     <th align="left">
+      <%= hidden_field_tag :team_status, @user.team_status %>
       <%= sync partial: 'bid_log_row', resource: @bid_log %>
       <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
     </th>
@@ -8,8 +9,18 @@
   <tr>
     <%= form_for @new_bid_log, :controller => "admin/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
-        <td align="left"><%= f.submit 'Close Bid' %></td>
+        <td align="left"><%= f.submit 'Close Bid', id: 'submit_button'%></td>
     <% end %>
   </tr>
 </table>
+<div align="center" style="padding-left:800px">
+	<% if @next_user.present? %>
+		<%= link_to "Next Player", admin_user_path(@next_user), :class => 'myButton' %>
+	<% end %>
+</div>
 <a href="<%= admin_users_path %>">Back</a>
+<script type="text/javascript">
+	if(document.getElementById('team_status').value != 'BIDDING'){
+		document.getElementById('submit_button').disabled = true;
+	}
+</script>

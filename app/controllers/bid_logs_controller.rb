@@ -11,17 +11,22 @@ class BidLogsController < ApplicationController
     player = User.where(id: bid_log_params['player_id']).first
     if current_user.role.try(:name) == 'admin'
       player.sell_player
-      redirect_to admin_user_path(player.id)
+      @bid_log = BidLog.get_highest_bid(player.id)
+      @bid_log.is_closed = true
     else
       @bid_log = current_user.bid_logs.build(bid_log_params)
       player.update_team_status
-      if @bid_log.save
-        sync_new @bid_log
-      end
-      respond_to do |format|
+    end
+    if @bid_log.save
+      sync_new @bid_log
+    end
+    respond_to do |format|
+      if current_user.role.try(:name) == 'admin'
+        format.html { redirect_to admin_user_path(@bid_log.player_id) }
+      else
         format.html { redirect_to team_owner_user_path(@bid_log.player_id) }
-        format.json { head :no_content }
       end
+      format.json { head :no_content }
     end
   end
 

@@ -1,14 +1,27 @@
 <%= hidden_field_tag :bid_log_present, @bid_log.amount.present? %>
+<%= hidden_field_tag :bid_closed, @bid_log.is_closed.present? %>
 <script type="text/javascript">
 	if(document.getElementById('bid_log_present').value == 'true'){
+		if(document.getElementById('bid_closed').value == 'true'){
+			for(i=0; i<3; i++){
+				document.getElementById('BidSummary').remove();
+			}
+		}
 		if(document.getElementById('BidSummary') != null){
 			document.getElementById('BidSummary').remove();
 		}
 	}
+	if(document.getElementById('submit_button') != null){
+		document.getElementById('submit_button').disabled = false;
+	}
 </script>
 <% if @bid_log.amount.present? %>
 	<div id="BidSummary">
-		Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
-		Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
+		<% if @bid_log.is_closed %>
+			Sold To: <%= @bid_log.user.try(:first_name) || '--' rescue nil%> for: <%= @bid_log.amount || '--' rescue nil%> points!
+		<% else %>
+			Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
+			Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
+		<% end %>
 	</div>
 <% end %>
