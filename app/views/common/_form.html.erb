@@ -58,6 +58,7 @@
   <tr id = "remover">
     <td/><td><%= image_tag @user.avatar_url(:thumb), id: "preview", height:"150",width: "150" %> <%= f.check_box :remove_avatar, id: "remove" %>Remove</td>
   </tr>
+  <%= f.hidden_field :team_status, :value => 'UNSOLD' %>
   <tr>
     <td/><td/><td><%= f.submit %></td>
     <td><%= f.submit 'Crop', name: 'crop' %></td>
