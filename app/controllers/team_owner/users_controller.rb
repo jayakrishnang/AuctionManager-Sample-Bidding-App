@@ -6,6 +6,7 @@ class TeamOwner::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @next_user = User.where('id > ? AND role_id = ?', params[:id], Role.get_user_role_id).limit(1).first
     if @user.team_status == 'UNSOLD'
       @bid_log = BidLog.new
     else

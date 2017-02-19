@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def new
-  	@user = User.new
+    @user = User.new
     get_designation_and_role_data
   end
 
@@ -24,7 +24,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+    @user = User.where(id: params[:id]).first
+    @next_user = User.where('id > ? AND role_id = ?', params[:id], Role.get_user_role_id).limit(1).first
     if @user.team_status == 'UNSOLD'
       @bid_log = BidLog.new
     else
