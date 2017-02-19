@@ -27,8 +27,8 @@ test:
   async: false
 
 production:
-  server: "https://rclbuildinglistener.herokuapp.com"
-  adapter_javascript_url: "https://rclauctionmanager.herokuapp.com:9292/faye/faye.js"
+  server: "http://example.com/faye"
+  adapter_javascript_url: "http://localhost:9292/faye/faye.js"
   adapter: "Faye"
   auth_token: "52295e427756c32f547459c5f2ada4079369b922d5553d7a7bcb60520d02daa7"
   async: true
