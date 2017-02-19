@@ -1,1 +1,1 @@
-web:  bundle exec thin -p $PORT -e $RACK_ENV -R sync.ru start
+web:  bundle exec thin -p 9292 -e $RAILS_ENV -R sync.ru start
