@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218102054) do
+ActiveRecord::Schema.define(version: 20170219052647) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",                   limit: 255
-    t.string   "admin_id",               limit: 255
+    t.integer  "admin_id",               limit: 4
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170218102054) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "player_id",  limit: 4
+    t.boolean  "is_closed"
   end
 
   add_index "bid_logs", ["user_id"], name: "index_bid_logs_on_user_id", using: :btree
