@@ -7,7 +7,7 @@
   <%= include_sync_config %>
   <%= csrf_meta_tags %>
 </head>
-<body align="right">
+<body align="right" data-no-turbolink="true">
   <p>
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>
