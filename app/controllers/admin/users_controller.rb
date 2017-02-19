@@ -69,7 +69,7 @@ class Admin::UsersController < ApplicationController
       :middle_name, :last_name, :email, :login_id, :password, :password_confirmation,
       :employee_id, :date_of_birth, :gender, :time_zone, :designation_id, :date_of_joining,
       :education, :comments, :role_id, :status, :deactivated_on, :reason, :previous_experience,
-      :work_phone, :avatar, :remove_avatar, :crop_x, :crop_y, :crop_w, :crop_h )
+      :work_phone, :avatar, :remove_avatar, :crop_x, :crop_y, :crop_w, :crop_h, :team_status)
  	end
 
   def get_designation_and_role_data
