@@ -15,7 +15,7 @@ class TeamOwner::UsersController < ApplicationController
     if @user.team_status == 'UNSOLD'
       @bid_log = BidLog.new
     else
-      @bid_log = BidLog.last
+      @bid_log = BidLog.where(player_id: @user.id).order('amount DESC').limit(1).first
     end
     @new_bid_log = BidLog.new
   end
