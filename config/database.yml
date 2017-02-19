@@ -14,5 +14,11 @@ test:
  username: root
  password: password
 
- production:
-  <<: *development
+production:
+ adapter: postgresql
+ encoding: unicode
+ host: localhost
+ pool: 5
+ database: user_ebo
+ username: root
+ password: password
