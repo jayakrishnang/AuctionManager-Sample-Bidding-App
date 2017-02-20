@@ -15,12 +15,6 @@
       <td align="center"><%= user.get_team_name || '--' %></td>
       <td align="center"><%= user.base_points %></td>
       <td align="center"><%= user.sold_points %></td>
-      <td>&nbsp<%= link_to "Show Full Details", team_owner_user_path(user), :class => 'myButton' %></td>
-      <% if user.team_status == 'SOLD' %>
-        <th><div class ='myButtonRed'>SOLD!</div></th>
-      <% else %>
-        <td align="center">&nbsp<%= link_to "BUY", team_owner_user_path(user), :class => 'myButtonGreen' %></td>
-      <% end %>
     </tr>
   <% end %>
 </table>
