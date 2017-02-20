@@ -19,4 +19,9 @@ class TeamOwner::UsersController < ApplicationController
     end
     @new_bid_log = BidLog.new
   end
+
+  def list_team_players
+    team_id = current_user.team_id
+    @players = User.where(team_id: team_id, role_id:  Role.get_user_role_id)
+  end
 end

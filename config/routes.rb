@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   namespace :team_owner do
     resources :users do
+      get 'list_team_players'
       get 'delete_avatar'
     end
   end
