@@ -1,5 +1,8 @@
+<div align="left">
+ <%= link_to "Players Bought",team_owner_user_list_team_players_path(@user), :class => 'myButton' %>
+</div>
 <table class="form-style-10">
-    <%= render :partial =>'common/details'%>
+    <%= render :partial =>'common/details'%> 
     <th align="left">
       <%= sync partial: 'bid_log_row', resource: @bid_log %>
       <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
