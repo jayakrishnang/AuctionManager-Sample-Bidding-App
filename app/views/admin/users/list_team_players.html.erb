@@ -1,0 +1,13 @@
+<h1 align="center">RCL AUCTION HOME</h1>
+<% @team_list.each do |team| %>
+  <table class="flat-table flat-table-1" align="center" >
+    <tr>
+      <th align="center"><%= team.name %></th>
+    </tr>
+    <% team.players.split(',').each do |player| %>
+      <tr>
+        <td align="center"><%= player %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

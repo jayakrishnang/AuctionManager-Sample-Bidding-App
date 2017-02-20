@@ -16,18 +16,28 @@
       <%= f.hidden_field :no_of_players, value: @no_of_players %>
       <%= f.hidden_field :male_players, value: @male_players %>
       <%= f.hidden_field :female_players, value: @female_players %>
-      <td align="right"><%= f.number_field :amount, min:0, max:100, class: 'special_input'%></td>
+      <td align="right"><%= f.number_field :amount, min:0, max:150, class: 'special_input'%></td>
       <td align="left"><%= f.submit 'Submit', id: 'submit_button', onclick: 'return validateBidding()' %></td>
     <% end %>
   </tr>
 </table>
-<div align="center" style="padding-left:800px">
+<div align="center" style="padding-left:800px;">
   <% if @next_user.present? %>
     <a href="<%= team_owner_users_path %>" class='myButton'>Back</a>
     <%= link_to "Next Player", team_owner_user_path(@next_user), :class => 'myButton' %>
   <% end %>
 </div>
-<footer class="login-screen" style="position:fixed">
-  <b><p align="left">Balance: <%=@purse_balance%></p>
-  <p align="left">Players Bought: <%=@no_of_players%></p></b>
+<footer style="position:absolute;bottom:80px;left:430px">
+  <table class='flat-table flat-table-1'>
+    <tr><td align="left">Balance: <%=@purse_balance%></td>
+      <td align="left">Total Purse: <%=@team.total_purse%></td>
+      <td align="left">Spent Amount: <%=@team.purse_spent%></td>
+      <td align="left">Avg spending: <%=(@team.purse_spent / @no_of_players).to_f%></td>
+    </tr>
+    <tr>
+        <td align="left">Players Bought: <%=@no_of_players%></td>
+        <td align="left">Male Players: <%=@male_players%></td>
+        <td align="left">Female Players: <%=@female_players%></td>
+        <td align="left">Players Needed: <%=11 - @no_of_players%></td>
+    </tr>
 </footer>

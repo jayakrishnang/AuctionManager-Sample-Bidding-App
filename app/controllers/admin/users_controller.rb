@@ -64,6 +64,10 @@ class Admin::UsersController < ApplicationController
   def close_bid
     #to_be_written
   end
+
+  def list_team_players
+    @team_list = Team.joins(:users).select('teams.name, GROUP_CONCAT(CONCAT(users.first_name, users.last_name)) AS players').group('teams.id')
+  end
   
   private
  	def user_params

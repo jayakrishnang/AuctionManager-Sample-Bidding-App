@@ -60,6 +60,11 @@ function validateBidding(){
   var base_points = document.getElementById('bid_log_base_points').value;
   var noOfPlayers = document.getElementById('bid_log_no_of_players').value;
   var currentBid = document.getElementById('current_bid_amount');
+  var bid_closed = document.getElementById('bid_closed')
+  if(bid_closed != null && bid_closed.value == 'true'){
+    alert("Bidding closed. Please select next player!");
+    return false;
+  }
   if(parseInt(bid_amount) < parseInt(base_points)){
     alert("Bid amount is lesser than base price. Please increase bid amount!");
     return false;
@@ -68,12 +73,12 @@ function validateBidding(){
     alert("Bid amount is lesser than current bid. Please increase bid amount!");
     return false;
   }
-  if((parseInt(balance) - ((9 - parseInt(noOfPlayers)) * 5)) < parseInt(bid_amount)){
-    alert("Insufficient balance! Remember you need to have 10 players in your team!");
+  if((parseInt(balance) - ((10 - parseInt(noOfPlayers)) * 5)) < parseInt(bid_amount)){
+    alert("Insufficient balance! Remember you need to have 11 players in your team!");
     return false;
   }
-  if(parseInt(noOfPlayers) == 10){
-    alert("You currently have 10 players. You cannot bid anymore!");
+  if(parseInt(noOfPlayers) == 11){
+    alert("You currently have 11 players. You cannot bid anymore!");
     return false;
   }
   return true;
