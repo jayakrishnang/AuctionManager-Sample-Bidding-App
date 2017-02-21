@@ -1,4 +1,4 @@
-AuctionManager- A sample bidding application
+#AuctionManager- A sample bidding application
 
 This is a sample bidding application built for conducting online auctions.
 
