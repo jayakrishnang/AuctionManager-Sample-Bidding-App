@@ -15,3 +15,4 @@ To run server:
       rails s -b IPADDRESS -p 3000 
   eg: rails s -b 172.16.147.79 -p 3000
   
+Also, please modify the sync.yml file in config folder: change the IPADDRESS to your needs. 
