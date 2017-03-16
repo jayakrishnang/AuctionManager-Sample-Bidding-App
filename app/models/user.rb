@@ -46,8 +46,10 @@ class User < ActiveRecord::Base
 
   def sell_player
     bid = BidLog.get_highest_bid(id)
-    bidder = bid.user
-    self.update_attributes(team_id: bidder.team_id, team_status: 'SOLD', sold_points: bid.amount)
+    team = Team.where(owner_id: bid.user_id).first
+    self.update_attributes(team_id: team.try(:id), team_status: 'SOLD', sold_points: bid.amount)
+    team.purse_spent = team.purse_spent + bid.amount
+    team.save
   end
 
   def update_team_status

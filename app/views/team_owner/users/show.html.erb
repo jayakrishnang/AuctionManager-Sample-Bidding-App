@@ -1,5 +1,8 @@
+<div align="left">
+ <%= link_to "Players Bought",team_owner_user_list_team_players_path(@user), :class => 'myButton' %>
+</div>
 <table class="form-style-10">
-    <%= render :partial =>'common/details'%>
+    <%= render :partial =>'common/details'%> 
     <th align="left">
       <%= sync partial: 'bid_log_row', resource: @bid_log %>
       <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
@@ -8,14 +11,33 @@
   <tr>
     <%= form_for @new_bid_log, :controller => "team_owner/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
-        <td align="right"><%= f.number_field :amount, min:0 %></td>
-        <td align="left"><%= f.submit 'Submit', id: 'submit_button' %></td>
+      <%= f.hidden_field :base_points, value: @user.base_points %>
+      <%= f.hidden_field :purse_balance, value: @purse_balance %>
+      <%= f.hidden_field :no_of_players, value: @no_of_players %>
+      <%= f.hidden_field :male_players, value: @male_players %>
+      <%= f.hidden_field :female_players, value: @female_players %>
+      <td align="right"><%= f.number_field :amount, min:0, max:150, class: 'special_input'%></td>
+      <td align="left"><%= f.submit 'Submit', id: 'submit_button', onclick: 'return validateBidding()' %></td>
     <% end %>
   </tr>
 </table>
-<div align="center" style="padding-left:800px">
+<div align="center" style="padding-left:800px;">
   <% if @next_user.present? %>
+    <a href="<%= team_owner_users_path %>" class='myButton'>Back</a>
     <%= link_to "Next Player", team_owner_user_path(@next_user), :class => 'myButton' %>
   <% end %>
 </div>
-<a href="<%= team_owner_users_path %>">Back</a>
+<footer style="position:absolute;bottom:80px;left:430px">
+  <table class='flat-table flat-table-1'>
+    <tr><td align="left">Balance: <%=@purse_balance%></td>
+      <td align="left">Total Purse: <%=@team.total_purse%></td>
+      <td align="left">Spent Amount: <%=@team.purse_spent%></td>
+      <td align="left">Avg spending: <%=(@team.purse_spent / @no_of_players).to_f%></td>
+    </tr>
+    <tr>
+        <td align="left">Players Bought: <%=@no_of_players%></td>
+        <td align="left">Male Players: <%=@male_players%></td>
+        <td align="left">Female Players: <%=@female_players%></td>
+        <td align="left">Players Needed: <%=11 - @no_of_players%></td>
+    </tr>
+</footer>

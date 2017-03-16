@@ -1,14 +1,28 @@
 <%= hidden_field_tag :bid_log_present, @bid_log.amount.present? %>
 <%= hidden_field_tag :bid_closed, @bid_log.is_closed.present? %>
 <script type="text/javascript">
-	if(document.getElementById('bid_log_present').value == 'true'){
-		if(document.getElementById('bid_closed').value == 'true'){
-			for(i=0; i<3; i++){
-				document.getElementById('BidSummary').remove();
-			}
-		}
-		if(document.getElementById('BidSummary') != null){
-			document.getElementById('BidSummary').remove();
+	bidSummaries = document.getElementsByClassName('BidSummary');
+	if(bidSummaries != null){
+	// 	if(document.getElementById('bid_closed').value == 'true'){
+	// 		// if(bidSummaries != null){
+	// 			document.getElementsByClassName('BidSummary')[0].remove();
+	// 			document.getElementsByClassName('BidSummary')[0].remove();
+	// 		// }
+	// 	// 	for(i=0; i<3; i++){
+	// 	// 		document.getElementById('BidSummary').remove();
+	// 	// 	}
+	// 	}
+	// 	if(bidSummaries != null){
+	// 		for(i=0; i<bidSummaries.length; i++){
+	// 			document.getElementsByClassName('BidSummary')[0].remove();
+	// 			// document.getElementsByClassName('BidSummary')[0].remove();
+	// 		}
+	// 	}
+	// }
+	// else if(bidSummaries != null){
+	// 	document.getElementsByClassName('BidSummary')[0].remove();
+		for(i=0; bidSummaries[1] != null; i++){
+			document.getElementsByClassName('BidSummary')[0].remove();
 		}
 	}
 	if(document.getElementById('submit_button') != null){
@@ -16,10 +30,11 @@
 	}
 </script>
 <% if @bid_log.amount.present? %>
-	<div id="BidSummary">
+	<div class="BidSummary">
 		<% if @bid_log.is_closed %>
 			Sold To: <%= @bid_log.user.try(:first_name) || '--' rescue nil%> for: <%= @bid_log.amount || '--' rescue nil%> points!
 		<% else %>
+			<%= hidden_field_tag :current_bid_amount, @bid_log.amount %>
 			Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
 			Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
 		<% end %>

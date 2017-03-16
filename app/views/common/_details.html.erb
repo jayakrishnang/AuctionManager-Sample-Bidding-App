@@ -1,4 +1,4 @@
-  <h1 id="label" align="center"> ENTERED DETAILS </h1>
+  <h1 id="label" align="center"> BIDDING HOME</h1>
   <tr>
     <td align="left"><strong>Name: <%= @user.first_name %> <%=  @user.middle_name %> <%= @user.last_name %></strong></td>
     <td align="left"><strong>Base Points: <%= @user.base_points%></strong></td>
@@ -8,8 +8,7 @@
   <tr>
     <td align="left"><strong>Team: <%= @user.get_team_name || '--' %></strong> </td>
   </tr>
-  <% if @user.avatar? %>
-    <tr/>
-    <tr id="bid_log_row">
-      <td rowspan="3" align="left"><%= image_tag @user.avatar_url(:thumb) %></td>
-  <% end %>
+  <tr/>
+  <tr id="bid_log_row">  
+    <td rowspan="3" align="left"><% if @user.avatar? %><%= image_tag @user.avatar_url(:thumb) %><%end%>
+  </td>

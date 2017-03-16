@@ -14,13 +14,24 @@
   </tr>
 </table>
 <div align="center" style="padding-left:800px">
+   <%= link_to "Players Bought",admin_user_list_team_players_path(@user), :class => 'myButton' %>
 	<% if @next_user.present? %>
+    <a href="<%= admin_users_path %>" class='myButton'>Back</a>
 		<%= link_to "Next Player", admin_user_path(@next_user), :class => 'myButton' %>
 	<% end %>
 </div>
-<a href="<%= admin_users_path %>">Back</a>
+<footer style="padding-top:100px; padding-left:200px; bottom:0px; position:fixed;">
+  <table class='flat-table flat-table-1'>
+    <tr>
+      <% @teams.each_with_index do |team, i| %>
+        <td/><th><%=team.name%></th><td>Balance: <%=team.total_purse - team.purse_spent%><br/>Players Bought:<%=team.player_count%>
+        </td><td/>
+      <% end %>
+    </tr>
+  </table>
+</footer>
 <script type="text/javascript">
-	if(document.getElementById('team_status').value != 'BIDDING'){
-		document.getElementById('submit_button').disabled = true;
-	}
+  if(document.getElementById('team_status').value != 'BIDDING'){
+    document.getElementById('submit_button').disabled = true;
+  }
 </script>

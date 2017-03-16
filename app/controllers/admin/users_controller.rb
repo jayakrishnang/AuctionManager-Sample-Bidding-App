@@ -11,6 +11,7 @@ class Admin::UsersController < ApplicationController
 
   def create
 	  @user = User.new(user_params)
+    @user.team_status = 'UNSOLD'
     if @user.save
       if (params[:user][:avatar].present? && params[:crop])
         render :crop
@@ -25,11 +26,12 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.where(id: params[:id]).first
+    @teams = Team.get_team_stats
     @next_user = User.where('id > ? AND role_id = ?', params[:id], Role.get_user_role_id).limit(1).first
     if @user.team_status == 'UNSOLD'
       @bid_log = BidLog.new
     else
-      @bid_log = BidLog.last
+      @bid_log = BidLog.where(player_id: @user.id).order('amount DESC').limit(1).first
     end
     @new_bid_log = BidLog.new
   end
@@ -61,6 +63,10 @@ class Admin::UsersController < ApplicationController
 
   def close_bid
     #to_be_written
+  end
+
+  def list_team_players
+    @team_list = Team.joins(:users).select('teams.name, GROUP_CONCAT(CONCAT(users.first_name, users.last_name)) AS players').group('teams.id')
   end
   
   private
