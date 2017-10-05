@@ -5,12 +5,13 @@
       <%= sync partial: 'bid_log_row', resource: @bid_log %>
       <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
     </th>
-  </tr>
   <tr>
+  <td>
     <%= form_for @new_bid_log, :controller => "admin/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
-        <td align="left"><%= f.submit 'Close Bid', id: 'submit_button'%></td>
+      <%= f.submit 'Close Bid', id: 'submit_button'%>
     <% end %>
+    </td>
   </tr>
 </table>
 <div align="center" style="padding-left:800px">
