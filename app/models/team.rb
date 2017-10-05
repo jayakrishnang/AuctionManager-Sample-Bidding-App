@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
+class Team < ApplicationRecord
 	has_many :users
 	scope :get_team, lambda { |id| where(owner_id: id) }
 	scope :get_team_stats, -> { select('teams.*, COUNT(users.id) AS player_count')

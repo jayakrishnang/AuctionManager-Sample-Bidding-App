@@ -5,6 +5,7 @@
 //= require turbolinks
 //= require sync 
 //= require_tree .
+
 $(function(){
 
   $(".check-value").hide();

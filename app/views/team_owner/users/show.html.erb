@@ -7,19 +7,20 @@
       <%= sync partial: 'bid_log_row', resource: @bid_log %>
       <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
     </th>
-  </tr>
-  <tr>
-    <%= form_for @new_bid_log, :controller => "team_owner/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
+    <tr>
+    <td>
+    <%= form_for @new_bid_log, action: bid_logs_path do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
       <%= f.hidden_field :base_points, value: @user.base_points %>
       <%= f.hidden_field :purse_balance, value: @purse_balance %>
       <%= f.hidden_field :no_of_players, value: @no_of_players %>
       <%= f.hidden_field :male_players, value: @male_players %>
       <%= f.hidden_field :female_players, value: @female_players %>
-      <td align="right"><%= f.number_field :amount, min:0, max:150, class: 'special_input'%></td>
-      <td align="left"><%= f.submit 'Submit', id: 'submit_button', onclick: 'return validateBidding()' %></td>
+      <%= f.number_field :amount, min:0, max:150, class: 'special_input'%>
+      <%= f.submit 'Submit', id: 'submit_button', onclick: 'return validateBidding()' %>
     <% end %>
-  </tr>
+    </td>
+</tr>
 </table>
 <div align="center" style="padding-left:800px;">
   <% if @next_user.present? %>

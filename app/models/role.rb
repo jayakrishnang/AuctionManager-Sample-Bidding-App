@@ -1,4 +1,4 @@
-class Role < ActiveRecord::Base
+class Role < ApplicationRecord
 	has_many :users
 
 	def self.get_user_role_id
