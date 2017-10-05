@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'cancan'
+gem 'cancancan'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.rc2', '< 5.1'
+gem 'rails', '~> 5.1', '>= 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 gem 'faye'
@@ -13,12 +13,13 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 5.0.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
