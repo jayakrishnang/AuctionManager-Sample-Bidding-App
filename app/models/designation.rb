@@ -1,3 +1,3 @@
-class Designation < ActiveRecord::Base
+class Designation < ApplicationRecord
   has_many :users
 end
