@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise', github: 'plataformatec/devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'puma'
 
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -44,12 +45,13 @@ group :development, :test do
 
   gem 'factory_girl_rails'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: http://github.com/rails/spring
   gem 'spring'
   gem 'launchy'
   gem 'pry-rails'
+  gem 'byebug'
 end
 
 group :test do
