@@ -3,10 +3,10 @@
 </div>
 <table class="form-style-10">
     <%= render :partial =>'common/details'%> 
-    <th align="left">
-      <%= sync partial: 'bid_log_row', resource: @bid_log %>
-      <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
-    </th>
+<!--     <th align="left">
+      <%= #sync partial: 'bid_log_row', resource: @bid_log %>
+      <%= #sync_new partial: 'bid_log_row', resource: BidLog.new %>
+    </th> -->
     <tr>
     <td>
     <%= form_for @new_bid_log, action: bid_logs_path do |f| %>
