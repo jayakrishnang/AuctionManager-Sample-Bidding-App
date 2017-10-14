@@ -4,11 +4,13 @@
 <table class="form-style-10">
     <%= render :partial =>'common/details'%> 
     <th align="left">
+    <div id = "web-console">
     <%= render  @bid_log %>
+    </div>
     </th>
     <tr>
     <td>
-    <%= form_for @new_bid_log, action: bid_logs_path do |f| %>
+    <%= form_for @new_bid_log,  html: { id: 'message-form' } do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
       <%= f.hidden_field :base_points, value: @user.base_points %>
       <%= f.hidden_field :purse_balance, value: @purse_balance %>
@@ -16,7 +18,7 @@
       <%= f.hidden_field :male_players, value: @male_players %>
       <%= f.hidden_field :female_players, value: @female_players %>
       <%= f.number_field :amount, min:0, max:150, class: 'special_input'%>
-      <%= f.submit 'Submit', id: 'submit_button', onclick: 'return validateBidding()' %>
+      <%= f.submit 'Submit', id: 'submit_button', data: {behavior: "user_bidder"}, onclick: 'return validateBidding()' %>
     <% end %>
     </td>
 </tr>
