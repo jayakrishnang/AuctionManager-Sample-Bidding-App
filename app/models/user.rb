@@ -14,7 +14,6 @@ class User < ApplicationRecord
   #validates :deactivated_on, absence: true, if: :is_active
   # validates :work_phone, format: {with: /\A(180\-)?[0-9]{3}(\-)?[0-9]{3}(\-)?[0-9]{4}\z/}
   before_save :set_default_values, :revert_locked_data
-  sync :all
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
 

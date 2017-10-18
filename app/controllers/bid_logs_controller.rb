@@ -17,9 +17,7 @@ class BidLogsController < ApplicationController
       @bid_log = current_user.bid_logs.build(bid_log_params)
       player.update_team_status
     end
-    if @bid_log.save
-      sync_new @bid_log
-    end
+      @bid_log.save
     respond_to do |format|
       if current_user.role.try(:name) == 'admin'
         format.html { redirect_to admin_user_path(@bid_log.player_id) }

@@ -1,5 +1,5 @@
-<%= hidden_field_tag :bid_log_present, @bid_log.amount.present? %>
-<%= hidden_field_tag :bid_closed, @bid_log.is_closed.present? %>
+<%= hidden_field_tag :bid_log_present, bid_log.amount.present? %>
+<%= hidden_field_tag :bid_closed, bid_log.is_closed.present? %>
 <script type="text/javascript">
 	bidSummaries = document.getElementsByClassName('BidSummary');
 	if(bidSummaries != null){
@@ -29,14 +29,14 @@
 		document.getElementById('submit_button').disabled = false;
 	}
 </script>
-<% if @bid_log.amount.present? %>
+<% if bid_log.amount.present? %>
 	<div class="BidSummary">
-		<% if @bid_log.is_closed %>
-			Sold To: <%= @bid_log.user.try(:first_name) || '--' rescue nil%> for: <%= @bid_log.amount || '--' rescue nil%> points!
+		<% if bid_log.is_closed %>
+			Sold To: <%= bid_log.user.try(:first_name) || '--' rescue nil%> for: <%= bid_log.amount || '--' rescue nil%> points!
 		<% else %>
-			<%= hidden_field_tag :current_bid_amount, @bid_log.amount %>
-			Current Bid:<br/><%= @bid_log.amount || '--' rescue nil%><br/><br/>
-			Current Bidder:<br/><%= @bid_log.user.try(:first_name) || '--' rescue nil%>
+			<% hidden_field_tag :current_bid_amount, bid_log.amount %>
+			Current Bid:<br/><%= bid_log.amount || '--' rescue nil%><br/><br/>
+			Current Bidder:<br/><%= bid_log.user.try(:first_name) || '--' rescue nil%>
 		<% end %>
 	</div>
 <% end %>
