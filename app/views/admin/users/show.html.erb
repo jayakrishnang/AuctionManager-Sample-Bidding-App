@@ -1,13 +1,11 @@
 <table class="form-style-10">
     <%= render :partial =>'common/details'%>
-    <th align="left">
-      <%= hidden_field_tag :team_status, @user.team_status %>
-      <%= sync partial: 'bid_log_row', resource: @bid_log %>
-      <%= sync_new partial: 'bid_log_row', resource: BidLog.new %>
+    <th align="left" id = "bid_partial">
+       <%= render  @bid_log %>
     </th>
   <tr>
   <td>
-    <%= form_for @new_bid_log, :controller => "admin/bid_logs", :action => "create", :html => { :method => :post} do |f| %>
+    <%= form_for @new_bid_log, html: { id: 'admin-message-form' }  do |f| %>
       <%= f.hidden_field :player_id, value: @user.id %>
       <%= f.submit 'Close Bid', id: 'submit_button'%>
     <% end %>
