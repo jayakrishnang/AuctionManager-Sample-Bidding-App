@@ -32,9 +32,9 @@
 <% if bid_log.amount.present? %>
 	<div class="BidSummary">
 		<% if bid_log.is_closed %>
-			Sold To: <%= @bid_log.user.try(:first_name) || '--' rescue nil%> for: <%= bid_log.amount || '--' rescue nil%> points!
+			Sold To: <%= bid_log.user.try(:first_name) || '--' rescue nil%> for: <%= bid_log.amount || '--' rescue nil%> points!
 		<% else %>
-			<%= hidden_field_tag :current_bid_amount, bid_log.amount %>
+			<% hidden_field_tag :current_bid_amount, bid_log.amount %>
 			Current Bid:<br/><%= bid_log.amount || '--' rescue nil%><br/><br/>
 			Current Bidder:<br/><%= bid_log.user.try(:first_name) || '--' rescue nil%>
 		<% end %>
