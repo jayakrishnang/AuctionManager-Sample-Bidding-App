@@ -1,0 +1,26 @@
+<h1 align="center">SCOREBOARD</h1>
+<table class="flat-table flat-table-1" align="center" >
+  <tr>
+    <th>Batsman</th>
+    <th/>
+    <th>Runs</th>
+    <th>Balls</th>
+    <th>4s</th>
+    <th>6s</th>
+    <th>Strike Rate</th>
+  </tr>
+  <% @batsmen.each do |batsman| %>
+    <% details = batsman.calculate_runs(@inning.id) %>
+    <tr>
+      <td><%= batsman.get_full_name %></td>
+      <td><%= batsman.get_wicket_info(@inning.id, details[1]) %></td>
+      <td><%= details[0] || '--' %></td>
+      <td><%= details[1] || '--' %></td>
+      <td><%= details[2] || '--' %></td>
+      <td><%= details[3] || '--' %></td>
+      <td><%= ((details[0].to_f / details[1].to_f) * 100).round(2) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', admin_match_path(@inning.match), :class => 'myButton' %>

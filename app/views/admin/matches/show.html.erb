@@ -1,0 +1,33 @@
+<table class="form-style-10">
+  <h1 id="label" align="center"><%= @match.name %></h1>
+  <tr>
+    <td align="right" style="font-size:x-large"><strong><%= @innings.first.team.name %>: </strong></td>
+    <td align="left" style="font-size:xx-large"><strong><%= @innings.first.runs_scored%>/<%= @innings.first.wickets.count %></strong></td>
+    <td>
+      <% if @innings.first.status == 'NEW' %>
+        <%= link_to "Start Innings", admin_inning_start_innings_path(@innings.first), :class => 'myButton' %>
+      <% elsif @innings.first.status == 'ONGOING' %>
+        <%= link_to "Continue Innings", admin_inning_path(@innings.first), :class => 'myButton' %>
+      <% end %>
+      <% if ['ONGOING', 'COMPLETED'].include?(@innings.first.status) %>
+        <%= link_to "Scoreboard", admin_inning_scoreboard_path(@innings.first), :class => 'myButton' %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" style="font-size:x-large"><strong><%= @innings.last.team.name %>: </strong></td>
+    <td align="left" style="font-size:xx-large"><strong><%= @innings.last.runs_scored%>/<%= @innings.last.wickets.count %></strong></td>
+    <td>
+      <% if @innings.last.status == 'NEW' %>
+        <%= link_to "Start Innings", admin_inning_start_innings_path(@innings.last), :class => 'myButton' %>
+      <% elsif @innings.last.status == 'ONGOING' %>
+        <%= link_to "Continue Innings", admin_inning_path(@innings.last), :class => 'myButton' %>
+      <% end %>
+      <% if ['ONGOING', 'COMPLETED'].include?(@innings.last.status) %>
+        <%= link_to "Scoreboard", admin_inning_scoreboard_path(@innings.last), :class => 'myButton' %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<%= link_to 'Back', admin_matches_path, :class => 'myButton' %>

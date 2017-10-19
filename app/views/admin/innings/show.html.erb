@@ -1,0 +1,107 @@
+<table class="form-style-10">
+  <h1 id="label" align="center"><%= @inning.team.name %></h1>
+  <h1 id="label" align="center"><%= @inning.runs_scored %>/<%= @inning.wickets.count %></h1>
+  <h1 id="label" align="center"><%= @inning.overs_played %> overs</h1>
+  <h3 id="label" align="center"><%= "#{@opponent_inning.team.name}:#{@opponent_inning.runs_scored}/#{@opponent_inning.wickets.count}" %> overs</h1>
+  <div align="center"><%= link_to "Scoreboard", admin_inning_scoreboard_path(@inning), :class => 'myButton' %>
+  </div>
+  <tr><th align="left">Batting:</th>
+      <td>Runs</td>
+      <td>Balls</td>
+      <td>4s</td>
+      <td>6s</td>
+      <td>Strike Rate</td>
+  </tr>
+  <tr>
+    <% striker_details = @striker.calculate_runs(@inning.id) %>
+    <td align="left" style="font-size:x-large"><strong><%= @striker.get_full_name %>*</strong></td>
+    <th><%= striker_details[0] || 0 %></th>
+    <th><%= striker_details[1] || 0 %></th>
+    <th><%= striker_details[2] || 0 %></th>
+    <th><%= striker_details[3] || 0 %></th>
+    <th><%= ((striker_details[0].to_f / striker_details[1].to_f) * 100).round(2) %></th>
+  </tr>
+  <tr>
+    <% non_striker_details = @non_striker.calculate_runs(@inning.id) %>
+    <td align="left" style="font-size:x-large"><strong><%= @non_striker.get_full_name %></strong></td>
+    <th><%= non_striker_details[0] || 0 %></th>
+    <th><%= non_striker_details[1] || 0 %></th>
+    <th><%= non_striker_details[2] || 0 %></th>
+    <th><%= non_striker_details[3] || 0 %></th>
+    <th><%= ((non_striker_details[0].to_f / non_striker_details[1].to_f) * 100).round(2) %></th>
+  </tr>
+  <tr>
+    <td colspan="6" align="left"><% 195.times do %>-<%end%></td>
+  </tr>
+  <tr><th align="left">Bowler:</td>
+      <th align="right">Overs</td>
+      <th align="right">Wickets</td>
+      <th align="right">Runs</td>
+      <th align="right">Economy</td></tr>
+  
+  <tr>
+    <td align="left" style="font-size:x-large"><strong><%= @bowler.try(:get_full_name) || '--' %></strong></td>
+    <% if @bowler.present? %>
+      <% bowler_details = @bowler.get_bowling_details(@inning.id) %>
+      <th><%= bowler_details[0] || 0 %></th>
+      <th><%= bowler_details[1] || 0 %></th>
+      <th><%= bowler_details[2] || 0 %></th>
+      <th><%= (bowler_details[0].to_f / bowler_details[2].to_f).round(2) || 0 %></th>
+    <% end %>
+  </tr>
+</table>
+
+<% if @over.status == 'COMPLETED' %>
+  <table class="form-style-10">
+    <%= form_tag admin_inning_create_over_path(@inning) do %>
+      <tr>
+        <th colspan="8" align="center" style="font-size:x-large">Start a new over</th>
+      </tr>
+      <tr>
+        <th>Select Bowler</th>
+        <td><%= select_tag 'bowler_id', options_from_collection_for_select(@opponents, "id", "get_full_name") %></td>
+        <td align="center"><%= submit_tag 'Submit' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <table class="form-style-10">
+    <%= form_tag admin_inning_create_ball_details_path(@inning) do %>
+      <%= hidden_field_tag :over_id, @over.id %>
+      <%= hidden_field_tag :batsman_id, @striker.id %>
+      <%= hidden_field_tag :non_striker_id, @non_striker.id %>
+      <tr>
+        <th colspan="8" align="center" style="font-size:x-large">This Over: 
+          <% @over.balls.each do |b| %>
+            &nbsp&nbsp&nbsp<%= b.get_over_summary %>
+          <% end %>
+        </th>
+      </tr>
+      <tr>
+        <td colspan="8" align="left"><% 195.times do %>-<%end%></td>
+      </tr>
+      <tr>
+        <th>Result</th>
+        <td><%= select_tag 'result', options_for_select(get_result_master_list), onchange: 'populateRuns();', id: 'result'%></td>
+        <th>Runs</th>
+        <td><%= number_field_tag 'runs_scored', 1, min:0, max:6, id:'runs_scored'%></td>
+        <th>Extra Type</th>
+        <td><%= select_tag 'extra_type', options_for_select(get_extra_master_list), id:'extra_type', onchange: 'populateExtraRuns();' %></td>
+        <th>Extra Runs</th>
+        <td><%= number_field_tag 'extra_runs', id:'extra_runs' %></td>
+      </tr>
+      <tr>
+        <th>Wicket Type</th>
+        <td><%= select_tag 'wicket_type', options_for_select(get_wicket_master_list) %></td>
+        <th>Batsman</th>
+        <td><%= select_tag 'wicket_batsman', options_from_collection_for_select(@batsmen, "id", "get_full_name", @striker.id) %></td>
+        <th>Partner</th>
+        <td><%= select_tag 'wicket_partner', options_from_collection_for_select(@opponents, "id", "get_full_name", @striker.id), include_blank:true %></td>
+        <td colspan="2" align="center"><%= submit_tag 'Submit' %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to "Switch Strike", admin_inning_switch_strike_path(@inning), :class => 'myButton' %>
+<%= link_to 'Back', admin_match_path(@inning.match), :class => 'myButton' %>

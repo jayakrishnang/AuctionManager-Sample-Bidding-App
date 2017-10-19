@@ -1,0 +1,28 @@
+<h1 align="center">MATCHES HOME</h1>
+<table class="flat-table flat-table-1" align="center" >
+  <tr>
+    <th align="center">Match</th>
+    <th align="center">Team 1</th>
+    <th align="center">Team 2</th>
+    <th align="center">Status</th>
+    <th align="center">Toss</th>
+    <th align="center">Winner</th>
+    <th colspan="4" align="center">Options</th>
+  </tr>
+  <% @matches.each do |match| %>
+    <tr>
+      <td><%= match.name %></td>
+      <td align="center"><%= Team.where(id: match.team_1_id).first.name %></td>
+      <td align="center"><%= Team.where(id: match.team_2_id).first.name %></td>
+      <td align="center"><%= match.status %></td>
+      <td align="center"><%= Team.where(id: match.toss_winner_id).first.try(:name) %></td>
+      <td align="center"><%= Team.where(id: match.winner_id).first.try(:name) || '--' %></td>
+      <td>&nbsp<%= link_to "Show Match Details", admin_match_path(match), :class => 'myButton' %></td>
+    </tr>
+  <% end %>
+</table>
+<div align="center">
+  <%= link_to 'New Match', new_admin_match_path, data: { no_turbolink: true }, id:'myButton', :class => 'myButton' %>
+  <%= link_to 'Points Table', points_table_admin_matches_path, data: { no_turbolink: true }, id:'myButton', :class => 'myButton' %>
+  <%= link_to 'Back', admin_users_path, :class => 'myButton' %>
+</div>
