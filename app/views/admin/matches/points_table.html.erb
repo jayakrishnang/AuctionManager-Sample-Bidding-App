@@ -1,0 +1,21 @@
+<h1 align="center">POINTS TABLE</h1>
+<table class="flat-table flat-table-1" align="center" >
+  <tr>
+    <th>Team Name</th>
+    <th>Matches</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Net Run Rate</th>
+  </tr>
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <td><%= team.innings.count %></td>
+      <td><%= Match.where(winner_id: team.id).count %></td>
+      <td><%= team.matches.where(status:'COMPLETED').count - Match.where(winner_id: team.id).count %></td>
+      <td><%= team.calculate_net_run_rate %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', admin_matches_path, :class => 'myButton' %>

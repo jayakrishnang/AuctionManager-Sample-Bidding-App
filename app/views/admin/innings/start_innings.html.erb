@@ -1,0 +1,17 @@
+<table class="form-style-10">
+	<h1 align="center">CHOOSE BOWLER AND BATSMEN</h1>
+	<%= form_tag admin_inning_proceed_innings_path do %>
+		<tr>
+			<th>Select Batsmen</th>
+			<td><%= select_tag 'batsman_1', options_from_collection_for_select(@batsmen, "id", "get_full_name", @active_batsmen.first.try(:id)), disabled: @active_batsmen.first.present? %></td>
+			<td><%= select_tag 'batsman_2', options_from_collection_for_select(@batsmen, "id", "get_full_name", @active_batsmen.second.try(:id)), disabled: @active_batsmen.second.present? %></td>
+		</tr>
+		<tr>
+			<th>Select Bowler</th>
+			<td><%= select_tag 'bowler_id', options_from_collection_for_select(@bowlers, "id", "get_full_name", @active_bowler.try(:id)), disabled: @active_bowler.present? %></td>
+			<td align="center"><%= submit_tag 'Submit' %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to 'Back', admin_match_path(@inning.match), :class => 'myButton' %>
