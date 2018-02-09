@@ -56,7 +56,9 @@
 }
 
 .back {
-  background: url(IMG_95087.jpg);
+  background: url(6256753713_6921ae7b20_b.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .myButtonGreen {
@@ -124,4 +126,7 @@
 .myButtonRed:active {
 	position:relative;
 	top:1px;
+}
+.home-title{
+	color: white;
 }
