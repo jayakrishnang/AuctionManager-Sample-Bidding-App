@@ -10,6 +10,6 @@
   </tr>
   <tr/>
   <tr id="bid_log_row">  
-    <td rowspan="3" align="left"><% if @user.avatar? %><%= image_tag @user.avatar_url(:thumb) %><%end%>
+    <td rowspan="3" align="left"><% if @user.avatar_url.present? %><%= image_tag @user.avatar_url(:thumb) %><%end%>
   </td>
   </tr>

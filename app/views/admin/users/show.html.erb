@@ -4,11 +4,13 @@
        <%= render  @bid_log %>
     </th>
   <tr>
-  <td>
-    <%= form_for @new_bid_log, html: { id: 'admin-message-form' }  do |f| %>
-      <%= f.hidden_field :player_id, value: @user.id %>
-      <%= f.submit 'Close Bid', id: 'submit_button'%>
-    <% end %>
+    <td>
+      <div id='BidForm'>
+        <%= form_for @new_bid_log, html: { id: 'admin-message-form' }  do |f| %>
+          <%= f.hidden_field :player_id, value: @user.id %>
+          <%= f.submit 'Close Bid', id: 'submit_button'%>
+        <% end %>
+      </div>
     </td>
   </tr>
 </table>
@@ -19,7 +21,7 @@
 		<%= link_to "Next Player", admin_user_path(@next_user), :class => 'myButton' %>
 	<% end %>
 </div>
-<footer style="padding-top:100px; padding-left:200px; bottom:0px; position:fixed;">
+<footer style="margin-top:100px; padding-left:200px; bottom:0px; position:fixed;">
   <table class='flat-table flat-table-1'>
     <tr>
       <% @teams.each_with_index do |team, i| %>
