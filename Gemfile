@@ -4,7 +4,7 @@ gem 'cancancan'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1', '>= 5.1.4'
 # Use sqlite3 as the database for Active Record
-gem 'mysql2'
+# gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rmagick','2.13.3'
 gem "carrierwave"
-gem 'pg', group: :production
+gem 'pg'#, group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -59,4 +59,5 @@ group :test do
 	gem 'capybara'
 
 end
+gem 'redis', '~> 3.0'
 

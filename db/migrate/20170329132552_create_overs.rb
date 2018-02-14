@@ -1,4 +1,4 @@
-class CreateOvers < ActiveRecord::Migration
+class CreateOvers < ActiveRecord::Migration[5.1]
   def change
     create_table :overs do |t|
       t.integer :bowler_id

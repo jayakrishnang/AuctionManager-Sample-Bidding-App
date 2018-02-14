@@ -1,4 +1,4 @@
-class CreateWickets < ActiveRecord::Migration
+class CreateWickets < ActiveRecord::Migration[5.1]
   def change
     create_table :wickets do |t|
       t.integer :batsman_id

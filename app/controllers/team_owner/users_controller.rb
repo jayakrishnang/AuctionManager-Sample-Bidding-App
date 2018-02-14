@@ -1,7 +1,7 @@
 class TeamOwner::UsersController < ApplicationController
 	# load_and_authorize_resource except: [:create]
   def index
-    @users = User.where(role_id: Role.get_user_role_id)
+    @users = User.where(role_id: Role.get_user_role_id).order(:id)
   end
 
   def show
