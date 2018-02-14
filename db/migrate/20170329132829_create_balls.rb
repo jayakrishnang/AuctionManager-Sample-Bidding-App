@@ -1,4 +1,4 @@
-class CreateBalls < ActiveRecord::Migration
+class CreateBalls < ActiveRecord::Migration[5.1]
   def change
     create_table :balls do |t|
       t.integer :over_id

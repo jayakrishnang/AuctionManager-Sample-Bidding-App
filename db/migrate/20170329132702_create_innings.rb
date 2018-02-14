@@ -1,4 +1,4 @@
-class CreateInnings < ActiveRecord::Migration
+class CreateInnings < ActiveRecord::Migration[5.1]
   def change
     create_table :innings do |t|
       t.integer :team_id

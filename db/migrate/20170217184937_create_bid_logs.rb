@@ -1,4 +1,4 @@
-class CreateBidLogs < ActiveRecord::Migration
+class CreateBidLogs < ActiveRecord::Migration[5.1]
   def change
     create_table :bid_logs do |t|
       t.integer :amount

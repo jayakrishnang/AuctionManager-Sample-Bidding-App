@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   load_and_authorize_resource except: [:create]
   def index
-    @users = User.where(role_id: Role.get_user_role_id)
+    @users = User.where(role_id: Role.get_user_role_id).order(:id)
   end
 
   def new
@@ -33,7 +33,7 @@ class Admin::UsersController < ApplicationController
     else
       @bid_log = BidLog.where(player_id: @user.id).order('amount DESC').limit(1).first
     end
-    @new_bid_log = BidLog.new
+    @new_bid_log = BidLog.new(player_id: @user.id, amount:@bid_log.amount)
   end
   
   def edit
